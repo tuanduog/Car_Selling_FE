@@ -1,0 +1,24 @@
+<div class="icon">
+    <i class="bi bi-pencil-square"></i>
+    <div class="label">pencil-square</div>
+</div>
+
+<div class="icon">
+    <i class="bi bi-plus"></i>
+    <div class="label">plus</div>
+</div>
+
+<div class="icon">
+    <i class="bi bi-trash"></i>
+    <div class="label">trash</div>
+</div>
+
+<div class="icon">
+    <i class="bi bi-eye"></i>
+    <div class="label">eye</div>
+</div>
+
+<div class="icon">
+    <i class="bi bi-download"></i>
+    <div class="label">download</div>
+</div>
