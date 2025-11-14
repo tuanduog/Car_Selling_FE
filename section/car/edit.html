@@ -1,0 +1,113 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Chỉnh sửa thông tin xe</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Chỉnh sửa thông tin xe</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Chỉnh sửa thông tin xe</h5>
+
+            <!-- Vertical Form -->
+            <form class="row g-3">
+                <div class="col-12">
+                    <label for="inputCarName" class="form-label">Tên phiên bản</label>
+                    <select id="inputCarName" class="form-select" required>
+                        <option selected disabled>Chọn xe...</option>
+                        <option>VinFast VF 3</option>
+                        <option>VinFast VF 5 Plus</option>
+                        <option>VinFast VF 6 Eco</option>
+                        <option>VinFast VF 7 Eco</option>
+                        <option>VinFast VF 8 Eco</option>
+                        <option>VinFast VF 9 Eco</option>
+                        <option>VinFast Limo Green</option>
+                        <option>VinFast ECVan</option>
+
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="inputPrice" class="form-label">Giá niêm yết</label>
+                    <input type="text" class="form-control" id="inputPrice" placeholder="299 triệu VNĐ" required>
+                </div>
+                <div class="col-12">
+                    <label for="inputPriceHN" class="form-label">Lăn bánh tại Hà Nội</label>
+                    <input type="text" class="form-control" id="inputPriceHN" placeholder="321.337.000 VNĐ">
+                </div>
+                <div class="col-12">
+                    <label for="inputPriceCity" class="form-label">Lăn bánh tại tỉnh khác</label>
+                    <input type="text" class="form-control" id="inputPriceCity" placeholder="302.337.000 VNĐ">
+                </div>
+                <div class="col-12">
+                    <label for="inputDate" class="form-label">Ngày ra mắt</label>
+                    <input type="date" class="form-control" id="inputDate" placeholder="2024/05/07">
+                </div>
+                <div class="col-12">
+                    <label for="inputEngine" class="form-label">Kiểu động cơ</label>
+                    <input type="text" class="form-control" id="inputEngine" placeholder="Điện">
+                </div>
+                <div class="col-12">
+                    <label for="inputHorsePower" class="form-label">Công suất môtơ điện (mã lực)</label>
+                    <input type="text" class="form-control" id="inputHorsePower" placeholder="43">
+                </div>
+                <div class="col-12">
+                    <label for="inputMoment" class="form-label">Mô-men xoắn môtơ điện (Nm)</label>
+                    <input type="text" class="form-control" id="inputMoment" placeholder="110">
+                </div>
+                <div class="col-12">
+                    <label for="inputGear" class="form-label">Hộp số</label>
+                    <input type="text" class="form-control" id="inputGear" placeholder="1 cấp">
+                </div>
+                <div class="col-12">
+                    <label for="inputDriveSystem" class="form-label">Hệ dẫn động</label>
+                    <input type="text" class="form-control" id="inputDriveSystem" placeholder="Cầu sau (RWD)">
+                </div>
+                <div class="col-12">
+                    <label for="inputDrivingMode" class="form-label">Chế độ lái</label>
+                    <input type="text" class="form-control" id="inputDrivingMode" placeholder="Eco/Normal">
+                </div>
+                <div class="col-12">
+                    <label for="inputAcceleration" class="form-label">Thời gian tăng tốc từ 0-100 km/h (giây)</label>
+                    <input type="text" class="form-control" id="inputAcceleration" placeholder="5,3">
+                </div>
+                <div class="col-12">
+                    <label for="inputBattery" class="form-label">Loại pin</label>
+                    <input type="text" class="form-control" id="inputBattery" placeholder="LFP">
+                </div>
+                <div class="col-12">
+                    <label for="inputCapacity" class="form-label">Dung lượng pin (kWh)</label>
+                    <input type="text" class="form-control" id="inputCapacity" placeholder="18,64 kWh">
+                </div>
+                <div class="col-12">
+                    <label for="inputNormalTime" class="form-label">Thời gian nạp pin bình thường</label>
+                    <input type="text" class="form-control" id="inputNormalTime" placeholder="5 giờ (10-70%)">
+                </div>
+                <div class="col-12">
+                    <label for="inputFastTime" class="form-label">Thời gian sạc nhanh DC 10-70% (phút)</label>
+                    <input type="text" class="form-control" id="inputFastTime" placeholder="36 phút">
+                </div>
+                <div class="col-12">
+                    <label for="inputDistance" class="form-label">Tầm hoạt động (km)</label>
+                    <input type="text" class="form-control" id="inputDistance" placeholder="210">
+                </div>
+                <div class="col-12">
+                    <label for="inputMaxSpeed" class="form-label">Tốc độ tối đa (km/h)</label>
+                    <input type="text" class="form-control" id="inputMaxSpeed" placeholder="100">
+                </div>
+                <div class="col-12">
+                    <label for="inputImage" class="form-label">Ảnh minh họa</label>
+                    <input type="file" class="form-control" id="inputImage">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <button type="reset" class="btn btn-secondary">Hủy</button>
+                </div>
+            </form><!-- Vertical Form -->
+
+        </div>
+    </div>
+</main><!-- End #main -->

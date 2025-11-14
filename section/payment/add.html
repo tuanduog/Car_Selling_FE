@@ -1,0 +1,70 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Thanh toán</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active">Thanh toán</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thêm giao dịch thanh toán</h5>
+
+            <!-- Vertical Form -->
+            <form class="row g-3">
+                <div class="col-12">
+                    <label for="customerName" class="form-label">Tên khách hàng</label>
+                    <input type="text" class="form-control" id="customerName" placeholder="Nguyễn Văn A" required>
+                </div>
+                <div class="col-12">
+                    <label for="inputCarName" class="form-label">Mẫu xe</label>
+                    <select id="inputCarName" class="form-select" required>
+                        <option selected disabled>Chọn xe...</option>
+                        <option>VinFast VF 3</option>
+                        <option>VinFast VF 5 Plus</option>
+                        <option>VinFast VF 6 Eco</option>
+                        <option>VinFast VF 7 Eco</option>
+                        <option>VinFast VF 8 Eco</option>
+                        <option>VinFast VF 9 Eco</option>
+                        <option>VinFast Limo Green</option>
+                        <option>VinFast ECVan</option>
+
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="price" class="form-label">Số tiền (VNĐ)</label>
+                    <input type="text" class="form-control" id="price" placeholder="500.000.000" required>
+                </div>
+                <div class="col-12">
+                    <label for="paymentMethod" class="form-label">Hình thức thanh toán</label>
+                    <select id="paymentMethod" class="form-select">
+                        <option>Chuyển khoản</option>
+                        <option>Tiền mặt</option>
+                        <option>Thẻ tín dụng</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="paymentDate" class="form-label">Ngày thanh toán</label>
+                    <input type="date" class="form-control" id="paymentDate" required>
+                </div>
+                <div class="col-12">
+                    <label for="status" class="form-label">Trạng thái</label>
+                    <select id="status" class="form-select">
+                        <option>Đã thanh toán</option>
+                        <option>Đặt cọc</option>
+                        <option>Chưa thanh toán</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <button type="reset" class="btn btn-secondary">Hủy</button>
+                </div>
+            </form><!-- Vertical Form -->
+
+        </div>
+    </div>
+</main><!-- End #main -->

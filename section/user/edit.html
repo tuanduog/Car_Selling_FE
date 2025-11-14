@@ -1,42 +1,56 @@
 <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Chỉnh sửa thông tin</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-          <li class="breadcrumb-item active">Chỉnh sửa thông tin</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-    <div class="card">
+  <div class="pagetitle">
+    <h1>Chỉnh sửa thông tin</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chỉnh sửa thông tin</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Thông tin người dùng</h5>
+      <h5 class="card-title">Thông tin người dùng</h5>
 
-        <!-- Vertical Form -->
-        <form class="row g-3">
+      <!-- Vertical Form -->
+      <form class="row g-3">
         <div class="col-12">
-            <label for="inputNanme4" class="form-label">Your Name</label>
-            <input type="text" class="form-control" id="inputNanme4">
+          <label for="inputNanme" class="form-label">Họ và tên</label>
+          <input type="text" class="form-control" id="inputNanme">
         </div>
         <div class="col-12">
-            <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail4">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail">
         </div>
         <div class="col-12">
-            <label for="inputPassword4" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword4">
+          <label for="role" class="form-label">Vai trò</label>
+          <select id="role" class="form-select" required>
+            <option selected disabled>--Chọn--</option>
+            <option>Quản trị viên</option>
+            <option>Nhân viên</option>
+            <option>Khách hàng</option>
+          </select>
         </div>
         <div class="col-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          <label for="status" class="form-label">Trạng thái</label>
+          <select id="status" class="form-select" required>
+            <option selected disabled>--Chọn--</option>
+            <option>Hoạt động</option>
+            <option>Ngưng hoạt động</option>
+            <option>Bị khóa</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="dateCreate" class="form-label">Ngày tạo</label>
+          <input type="date" class="form-control" id="dateCreate">
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-primary">Thêm</button>
-            <button type="reset" class="btn btn-secondary">Hủy</button>
+          <button type="submit" class="btn btn-primary">Sửa</button>
+          <button type="reset" class="btn btn-secondary">Hủy</button>
         </div>
-        </form><!-- Vertical Form -->
+      </form><!-- Vertical Form -->
 
     </div>
-    </div>
-  </main><!-- End #main -->
+  </div>
+</main><!-- End #main -->

@@ -1,0 +1,68 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Thêm phụ kiện xe</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Thêm phụ kiện xe</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Thông tin phụ kiện xe</h5>
+
+        <!-- Vertical Form -->
+        <form class="row g-3">
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="inputPassword4" class="form-label">Loại phương tiện</label>
+                <input type="text" class="form-control" id="inputVehicleType">
+            </div>
+            <div class="col-6">
+                <label for="inputAddress" class="form-label">Dòng xe</label>
+                <input type="text" class="form-control" id="inputVehicleModel">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="inputEmail4" class="form-label">Tên phụ kiện</label>
+                <input type="text" class="form-control" id="inputAccessoryName">
+            </div>
+             <div class="col-6">
+                <label for="inputAddress" class="form-label">Tồn kho</label>
+                <input type="text" class="form-control" id="inputStock">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="inputAddress" class="form-label">Giá nhập</label>
+                <input type="text" class="form-control" id="inputPriceIn">
+            </div>
+            <div class="col-6">
+                <label for="inputAddress" class="form-label">Giá bán</label>
+                <input type="text" class="form-control" id="inputPriceOut">
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Hình ảnh</label>
+            <input type="file" class="form-control" id="inputImage">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Mô tả sản phẩm</label>
+            <textarea rows="5" class="form-control" name="inputDescription" id="inputDescription"></textarea>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Thông tin chi tiết</label>
+            <textarea rows="10" class="form-control" name="inputInfo" id="inputInfo"></textarea>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Thêm</button>
+            <button type="reset" class="btn btn-secondary">Hủy</button>
+        </div>
+        </form><!-- Vertical Form -->
+
+    </div>
+    </div>
+  </main><!-- End #main -->
