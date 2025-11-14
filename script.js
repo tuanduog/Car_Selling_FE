@@ -7,3 +7,10 @@ async function loadPage(url) {
 window.addEventListener('DOMContentLoaded', () => {
     loadPage('pages/dashboard.html');
 })
+
+const fullName = localStorage.getItem('fullName');
+document.getElementById('fullNameSpan').textContent = fullName;
+document.getElementById('fullNameH6').textContent = fullName;
+
+const email = localStorage.getItem('email');
+document.getElementById('email').textContent = email;

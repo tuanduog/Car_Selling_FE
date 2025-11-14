@@ -36,6 +36,8 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <script type="text/javascript" src="/api/register.js" defer></script>
 </head>
 
 <body>
@@ -66,27 +68,27 @@
                   <form class="row g-3 needs-validation p-3" novalidate>
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Họ và tên</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Vui lòng nhập đúng email!</div>
+                      <label for="yourFullname" class="form-label">Họ và tên</label>
+                      <input type="email" name="email" class="form-control" id="yourFullname" required>
+                      <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Email</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Vui lòng nhập đúng email!</div>
+                      <div class="invalid-feedback">Vui lòng nhập email!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Mật khẩu</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Nhập lại mật khẩu</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <label for="yourConfirmPassword" class="form-label">Nhập lại mật khẩu</label>
+                      <input type="password" name="password" class="form-control" id="yourConfirmPassword" required>
+                      <div class="invalid-feedback">Vui lòng nhập mật khẩu!!</div>
                     </div>
 
                     <div class="col-12">
@@ -97,7 +99,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Đăng ký</button>
+                      <button class="btn btn-primary w-100" type="submit" id="submitButton">Đăng ký</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Bạn đã có tài khoản? <a href="pages-login.html">Đăng nhập</a></p>
