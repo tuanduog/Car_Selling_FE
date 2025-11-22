@@ -1,7 +1,4 @@
-const Base_Url = "http://localhost:7000";
-
-// login
-document.getElementById('submitButton').addEventListener('click', async function(event) {
+document.getElementById('submitLogin').addEventListener('click', async function(event) {
     event.preventDefault();
     const email = document.getElementById('yourEmail').value;
     const password = document.getElementById('yourPassword').value;
@@ -19,7 +16,7 @@ document.getElementById('submitButton').addEventListener('click', async function
         },
         body: JSON.stringify({ email, password })
     })
-
+    console.log(response);
     const result = await response.json();
     if(result.statusCode === 200) {
         alert(result.message);

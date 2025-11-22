@@ -1,5 +1,3 @@
-const Base_Url = "http://localhost:7000";
-
 document.getElementById('submitButton').addEventListener('click', async function(event) {
     event.preventDefault();
     const fullName = document.getElementById('yourFullname').value;
