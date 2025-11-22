@@ -1,3 +1,5 @@
+const Base_Url = "http://localhost:7000"
+
 document.getElementById('submitLogin').addEventListener('click', async function(event) {
     event.preventDefault();
     const email = document.getElementById('yourEmail').value;
@@ -30,22 +32,4 @@ document.getElementById('submitLogin').addEventListener('click', async function(
         alert('Đăng nhập thất bại: ' + result.message);
     }
 })
-
-// logout
-document.addEventListener('DOMContentLoaded', () => {
-  const logoutBtn = document.getElementById('logout');
-
-  if(logoutBtn) {
-    logoutBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      // Xóa JWT hoặc bất kỳ token nào lưu
-      localStorage.removeItem('jwt');
-
-      // Redirect về trang login
-      window.location.href = 'pages-login.html';
-    });
-  } else {
-    console.error('Logout button not found!');
-  }
-});
 

@@ -5,8 +5,26 @@ async function loadPage(url) {
 
     fillUserInfo();
     if(url.includes("profile")){
-        initProfilePage();
+        import('../js/profile.js').then(module => {
+            module.initProfilePage();
+        });
     }
+}
+
+function logout() {
+    const logoutBtn = document.getElementById('btnLogout');
+    
+    if(!logoutBtn) return;
+
+    logoutBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('email');
+    localStorage.removeItem('role');
+    localStorage.removeItem('fullName');
+
+    window.location.href = 'pages-login.html';
+    });
 }
 
 function fillUserInfo() {
@@ -26,5 +44,6 @@ function fillUserInfo() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    logout();
     loadPage('pages/dashboard.html');
 })

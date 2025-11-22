@@ -1,4 +1,6 @@
-function initProfilePage() {
+import { updatePassword } from "../api/profile.js";
+
+export function initProfilePage() {
     const btn = document.getElementById('submitChangePassword');
         if(!btn) return;
         
@@ -19,18 +21,17 @@ function initProfilePage() {
             return;
         }
 
-        const response = await updatePassword(email, currentPassword, newPassword);
-        console.log(response);
-        const result = response.json();
+        const result = await updatePassword(email, currentPassword, newPassword);
         console.log(result);
         if(result.statusCode === 200){
             alert(result.message);
-            document.getElementById('currentPassword').textContent = "";
-            document.getElementById('newPassword').textContent = "";
-            document.getElementById('renewPassword').textContent = "";
+            document.getElementById('currentPassword').value = "";
+            document.getElementById('newPassword').value = "";
+            document.getElementById('renewPassword').value = "";
             return;
         } else {
             alert(result.message);
         }
     });
 }
+

@@ -1,4 +1,6 @@
-async function updatePassword(email, currentPassword, newPassword) {
+const Base_Url = "http://localhost:7000"
+
+export async function updatePassword(email, currentPassword, newPassword) {
     const token = localStorage.getItem('jwt');
     const response = await fetch(`${Base_Url}/api/profile/password/v1`, {
         method: 'PUT',
@@ -8,5 +10,5 @@ async function updatePassword(email, currentPassword, newPassword) {
         },
         body: JSON.stringify({ email, currentPassword, newPassword })
     });
-    return response;
+    return response.json();
 }
