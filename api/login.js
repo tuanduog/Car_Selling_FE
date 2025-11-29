@@ -1,4 +1,4 @@
-const Base_Url = "http://localhost:7000"
+const Base_Url = "http://localhost:7000";
 
 document.getElementById('submitLogin').addEventListener('click', async function(event) {
     event.preventDefault();
@@ -27,7 +27,11 @@ document.getElementById('submitLogin').addEventListener('click', async function(
         localStorage.setItem('email', data.email);
         localStorage.setItem('fullName', data.fullName);
         localStorage.setItem('role', data.role);
-        window.location.href = 'index.html';
+        if(data.role === "Customer"){
+            window.location.href = 'customer.html';
+        } else {
+            window.location.href = 'index.html';
+        }
     } else {
         alert('Đăng nhập thất bại: ' + result.message);
     }

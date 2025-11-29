@@ -39,8 +39,6 @@
 
   <script type="text/javascript" src="api/login.js" defer></script>
   <script type="text/javascript" src="script.js" defer></script>
-  <script type="module" src="api/profile.js" defer></script>
-  <script type="module" src="js/profile.js" defer></script>
 </head>
 
 <body>
@@ -270,11 +268,18 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/account-management.html')">
+          <i class="bi bi-people"></i>
+          <span>Quản lý tài khoản</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/user-management.html')">
