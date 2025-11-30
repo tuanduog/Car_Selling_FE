@@ -31,6 +31,7 @@ export function initProfilePage() {
             return;
         } else {
             alert(result.message);
+            return;
         }
     });
 }

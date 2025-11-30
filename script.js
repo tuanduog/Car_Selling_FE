@@ -13,7 +13,19 @@ async function loadPage(url) {
         });
     }
 
+    if(url.includes("team-leader-management")){
+        const module = await import('./js/staff.js');
+        setTimeout(() => {
+            module.loadLeaderManagement();
+        }, 0);
+    }
 
+    if(url.includes("add")){
+        const module = await import('./js/add-staff.js');
+        requestAnimationFrame(() => {
+            module.initAddLeader();
+        });
+    }
     fillUserInfo();
 
     if(url.includes("profile")) {

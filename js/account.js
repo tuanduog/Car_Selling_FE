@@ -31,7 +31,7 @@ export async function loadAccountManagement(page = 0){
     }
 
     if (!searchInput.dataset.listenerAttached) { 
-        statusSelect.addEventListener('input', () => loadAccountManagement(0));
+        searchInput.addEventListener('input', () => loadAccountManagement(0));
         searchInput.dataset.listenerAttached = true; 
     }
 
@@ -67,9 +67,26 @@ export async function loadAccountManagement(page = 0){
     }
 }
 
-async function toggleLock(){
+async function handleToggleLock(id){
+    const token = localStorage.getItem('jwt');
+    const response = await fetch(`${Base_Url}/api/account-manager/v1/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
 
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const updated = await response.json();
+    alert("Cập nhật thành công");
+
+    await loadAccountManagement(currentPage);
 }
+window.handleToggleLock = handleToggleLock;
 
 function renderTable(accounts){
     const tbody = document.querySelector("#account-table tbody");
@@ -89,7 +106,7 @@ function renderTable(accounts){
                 <!-- Nút khóa/mở khóa -->
                 <button 
                     class="btn btn-sm ${acc.status === 1 ? 'btn-outline-danger' : 'btn-outline-success'}"
-                    onclick="toggleLock(${acc.id})"
+                    onclick="handleToggleLock(${acc.id})"
                 >
                     <i class="bi ${acc.status === 1 ? 'bi-lock' : 'bi-unlock'}"></i>
                 </button>
