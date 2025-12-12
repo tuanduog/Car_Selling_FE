@@ -1,0 +1,72 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Chỉnh sửa thông tin</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chỉnh sửa thông tin</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Thông tin trưởng nhóm</h5>
+
+      <!-- Vertical Form -->
+      <form class="row g-3">
+    <!-- Mã nhân viên -->
+    <div class="col-12">
+        <label for="employeeCode" class="form-label">Mã nhân viên <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="employeeCode1" name="employeeCode" required>
+    </div>
+
+    <!-- Họ và tên -->
+    <div class="col-12">
+        <label for="fullName" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="fullName1" name="fullName" required>
+    </div>
+
+    <!-- Email -->
+    <div class="col-12">
+        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+        <input type="email" class="form-control" id="email1" name="email" required>
+    </div>
+
+    <!-- Ngày sinh -->
+    <div class="col-12">
+        <label for="birthday" class="form-label">Ngày sinh</label>
+        <input type="date" class="form-control" id="birthday1" name="birthday" required>
+    </div>
+
+    <!-- Giới tính -->
+    <div class="col-12">
+        <label for="gender" class="form-label">Giới tính</label>
+        <select id="gender1" name="gender" class="form-select" required>
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+        <option value="Khác">Khác</option>
+        </select>
+    </div>
+
+    <!-- Địa chỉ -->
+    <div class="col-12">
+        <label for="address" class="form-label">Địa chỉ</label>
+        <input type="text" class="form-control" id="address1" name="address">
+    </div>
+
+    <!-- Số điện thoại -->
+    <div class="col-12">
+        <label for="phone" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+        <input type="tel" class="form-control" id="phone1" name="phone">
+    </div>
+
+    <!-- Buttons -->
+    <div class="text-center">
+        <button type="button" id="addLeader" class="btn btn-primary">Cập nhật thông tin</button>
+    </div>
+    </form>
+
+    </div>
+  </div>
+</main><!-- End #main -->

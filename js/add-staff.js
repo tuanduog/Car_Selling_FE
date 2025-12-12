@@ -46,10 +46,12 @@ export async function initAddLeader() {
             });
             const result = await response.json();
             if(result.statusCode === 200){
-                alert("Thêm thành công");
-                return;
+                localStorage.setItem("toastMessage", "Thêm thành công");
+                localStorage.setItem("toastType", "success");
+                localStorage.setItem("redirectPage", "pages/team-leader-management.html");
+                window.location.href = "index.html";
             } else {
-                alert("Thêm thất bại");
+                showToast("Thêm thất bại", "error");
                 return;
             }
         } catch(error){

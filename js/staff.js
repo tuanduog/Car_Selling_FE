@@ -52,7 +52,6 @@ export async function loadLeaderManagement(page = 0){
 
     try {
         const leaders = await getLeader(page, keyword, status);
-        console.log('testapi:',leaders.data.content);
         renderTable(leaders.data.content);
 
         renderPagination(leaders.data.totalPages, Number(currentPage));
@@ -61,29 +60,65 @@ export async function loadLeaderManagement(page = 0){
     }
 }
 
+const handleDelete = async (id) => {
+    const token = localStorage.getItem("jwt");
+    const response = await fetch(`${Base_Url}/api/employee/inactive/v1/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const result = await response.json();
+    if(result.statusCode === 200){
+        showToast("Xóa thành công", "success");
+        window.location.reload();
+    } else {
+        showToast("Xóa thất bại", "error");
+    }
+}
+
+function attachTableEvents() {
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const id = e.target.closest("tr").dataset.id;
+            handleDelete(id);
+        });
+    });
+
+    document.querySelectorAll(".edit-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const id = e.target.closest("tr").dataset.id;
+            // TODO: handleEdit(id);
+            console.log("Edit:", id);
+        });
+    });
+}
+
 function renderTable(leaders){
     const tbody = document.querySelector("#leader-table tbody");
     tbody.innerHTML = leaders.map(leader => `
-        <tr>
+        <tr data-id="${leader.id}">
             <td>${leader.code}</td>
             <td>${leader.fullName}</td>
             <td>${leader.email}</td>
-            <td>${leader.phone}</td>
+            <td>${leader.phone ? leader.phone : ''}</td>
             <td>
                 <span class="badge ${leader.status == 1 ? "bg-success" : "bg-warning text-dark"}">
                     ${leader.status == 1 ? "Hoạt động" : "Ngừng hoạt động"}
                 </span>
             </td>
             <td class="text-center d-flex gap-2 justify-content-center">
-                <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa">
+                <button class="btn btn-outline-primary btn-sm me-2 edit-btn" title="Chỉnh sửa">
                     <i class="bi bi-pencil-square"></i>
                 </button>
-                <button class="btn btn-outline-danger btn-sm" title="Xóa">
+                <button class="btn btn-outline-danger btn-sm delete-btn" title="Xóa">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>
         </tr>
     `).join('');
+    attachTableEvents();
 }
 
 function renderPagination(totalPages, current){

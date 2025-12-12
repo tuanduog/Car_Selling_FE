@@ -78,8 +78,25 @@ function fillUserInfo() {
 
 window.addEventListener('DOMContentLoaded', () => {
     logout();
-    savedPage = localStorage.getItem('currentPage');
 
+    const msg = localStorage.getItem("toastMessage");
+    const type = localStorage.getItem("toastType");
+
+    if(msg && type){
+        showToast(msg, type);
+        localStorage.removeItem("toastMessage");
+        localStorage.removeItem("toastType");
+    }
+
+    let savedPage = localStorage.getItem('currentPage');
+    let redirectPage = localStorage.getItem('redirectPage');
+
+    if(redirectPage){
+        localStorage.removeItem('redirectPage');
+        loadPage(redirectPage);
+        setActiveMenu(redirectPage);
+        return;
+    }
     if(savedPage) {
         loadPage(savedPage);
         setActiveMenu(savedPage)
@@ -118,3 +135,18 @@ function setActiveMenu(page) {
     });
 }
 
+function showToast(message, type = "success"){
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    
+    toast.className = "toast";
+    if(type === "success"){
+        toast.classList.add("show");
+    } else {
+        toast.classList.add("show", "error");
+    }
+
+    setTimeout(() => {
+        toast.className = "toast";
+    }, 2500);
+}
