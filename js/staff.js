@@ -1,8 +1,8 @@
 const Base_Url = "http://localhost:7000"; // URL backend
 
-export async function getLeader(page = 0, keyword, status) {
+export async function getStaff(page = 0, keyword, status) {
     const token = localStorage.getItem('jwt');
-    const response = await fetch(`${Base_Url}/api/employee/v1?page=${page}&keyword=${encodeURIComponent(keyword)}&status=${encodeURIComponent(status)}&role=Teamleader`, {
+    const response = await fetch(`${Base_Url}/api/employee/v1?page=${page}&keyword=${encodeURIComponent(keyword)}&status=${encodeURIComponent(status)}&role=Staff`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -17,95 +17,77 @@ export async function getLeader(page = 0, keyword, status) {
 }
 
 let currentPage = 0;
-export async function loadLeaderManagement(page = 0){
+export async function loadStaffManagement(page = 0){
     currentPage = page;
-    const searchInput = document.getElementById('searchLeader');
-    const tableBody = document.querySelector("#leader-table tbody");
-    const statusSelect = document.getElementById('leaderStatus');
+    const searchInput = document.getElementById('searchStaff');
+    const tableBody = document.querySelector("#staff-table tbody");
+    const statusSelect = document.getElementById('staffStatus');
     const paginationContainer = document.getElementById('pagination');
     console.log(paginationContainer);
 
     if(!searchInput || !tableBody || !statusSelect || !paginationContainer) {
-        console.log('leader-management HTML chưa load xong');
+        console.log('staff-management HTML chưa load xong');
         return;
     }
 
     if (!searchInput.dataset.listenerAttached) { 
-        searchInput.addEventListener('input', () => loadLeaderManagement(0));
+        searchInput.addEventListener('input', () => loadStaffManagement(0));
         searchInput.dataset.listenerAttached = true; 
     }
 
     if (!statusSelect.dataset.listenerAttached) { 
-        statusSelect.addEventListener('change', () => loadLeaderManagement(0));
+        statusSelect.addEventListener('change', () => loadStaffManagement(0));
         statusSelect.dataset.listenerAttached = true; 
     } 
 
     const keyword = searchInput.value || "";
-    const statusStr = document.getElementById('leaderStatus').value || "";
-
+    const statusStr = document.getElementById('staffStatus').value || "";
     let status = "";
-    if(statusStr == "inactive"){
-        status = 1;
-    } else if(statusStr == "active"){
+    if(statusStr === "inactive"){
         status = 0;
+    } else if(statusStr === "active"){
+        status = 1;
     }
 
     try {
-        const leaders = await getLeader(page, keyword, status);
-        renderTable(leaders.data.content);
+        const staffs = await getStaff(page, keyword, status);
+        renderTable(staffs.data.content);
 
-        renderPagination(leaders.data.totalPages, Number(currentPage));
+        renderPagination(staffs.data.totalPages, Number(currentPage));
     } catch(error){
-        console.error("Lỗi khi fetch leader:", error);
+        console.error("Lỗi khi fetch staff:", error);
     }
 }
 
-const handleDelete = async (id) => {
-    const token = localStorage.getItem("jwt");
-    const response = await fetch(`${Base_Url}/api/employee/inactive/v1/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    const result = await response.json();
-    if(result.statusCode === 200){
-        showToast("Xóa thành công", "success");
-        window.location.reload();
-    } else {
-        showToast("Xóa thất bại", "error");
-    }
-}
+// function attachTableEvents() {
+//     document.querySelectorAll(".delete-btn").forEach(btn => {
+//         btn.addEventListener("click", (e) => {
+//             const id = e.target.closest("tr").dataset.id;
+//             handleDelete(id);
+//         });
+//     });
 
-function attachTableEvents() {
-    document.querySelectorAll(".delete-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const id = e.target.closest("tr").dataset.id;
-            handleDelete(id);
-        });
-    });
+//     document.querySelectorAll(".edit-btn").forEach(btn => {
+//         btn.addEventListener("click", (e) => {
+//             const id = e.target.closest("tr").dataset.id;
+//             // TODO: handleEdit(id);
+//             console.log("Edit:", id);
+//         });
+//     });
+// }
 
-    document.querySelectorAll(".edit-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const id = e.target.closest("tr").dataset.id;
-            // TODO: handleEdit(id);
-            console.log("Edit:", id);
-        });
-    });
-}
-
-function renderTable(leaders){
-    const tbody = document.querySelector("#leader-table tbody");
-    tbody.innerHTML = leaders.map(leader => `
-        <tr data-id="${leader.id}">
-            <td>${leader.code}</td>
-            <td>${leader.fullName}</td>
-            <td>${leader.email}</td>
-            <td>${leader.phone ? leader.phone : ''}</td>
+function renderTable(staffs){
+    const tbody = document.querySelector("#staff-table tbody");
+    tbody.innerHTML = staffs.map(staff => `
+        <tr data-id="${staff.id}">
+            <td>${staff.code}</td>
+            <td>${staff.fullName}</td>
+            <td>${staff.email}</td>
+            <td>${staff.phone ? staff.phone : ''}</td>
+            <td>${staff.managerFullName ? staff.managerFullName : ''}</td>
             <td>
-                <span class="badge ${leader.status == 1 ? "bg-success" : "bg-warning text-dark"}">
-                    ${leader.status == 1 ? "Hoạt động" : "Ngừng hoạt động"}
+                <span class="badge ${staff.status == 1 ? "bg-success" : "bg-warning text-dark"}">
+                    ${staff.status == 1 ? "Hoạt động" : "Ngừng hoạt động"}
                 </span>
             </td>
             <td class="text-center d-flex gap-2 justify-content-center">
@@ -118,7 +100,7 @@ function renderTable(leaders){
             </td>
         </tr>
     `).join('');
-    attachTableEvents();
+    // attachTableEvents();
 }
 
 function renderPagination(totalPages, current){

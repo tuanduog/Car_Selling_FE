@@ -14,18 +14,27 @@ async function loadPage(url) {
     }
 
     if(url.includes("team-leader-management")){
-        const module = await import('./js/staff.js');
+        const module = await import('./js/leader.js');
         setTimeout(() => {
             module.loadLeaderManagement();
         }, 0);
     }
 
+    if(url.includes("staff-management")){
+        const module = await import('./js/staff.js');
+        setTimeout(() => {
+            module.loadStaffManagement();
+        }, 0);
+    }
+
     if(url.includes("add")){
-        const module = await import('./js/add-staff.js');
+        const module = await import('./js/add-leader.js');
         requestAnimationFrame(() => {
             module.initAddLeader();
         });
     }
+
+    
     fillUserInfo();
 
     if(url.includes("profile")) {
