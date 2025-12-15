@@ -62,10 +62,10 @@
     </div>
 
     <div class="col-12">
-        <label for="manager" class="form-label">Người quản lý <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="manager" name="manager" readonly data-bs-toggle="modal" data-bs-target="#managerModal">
-        <input hidden id="managerId">
-      </div>
+      <label for="manager" class="form-label">Người quản lý <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="manager" name="manager" readonly data-bs-toggle="modal" data-bs-target="#managerModal">
+      <input hidden id="managerId">
+    </div>
 
     <!-- Buttons -->
     <div class="text-center">
@@ -111,7 +111,14 @@
 
         <div id="tablePagination" class="mt-2 d-flex justify-content-end"></div>
       </div>
-
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-primary" id="confirmManager">
+          Xác nhận
+        </button>
+      </div>
     </div>
   </div>
 </div>

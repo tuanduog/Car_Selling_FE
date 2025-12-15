@@ -23,7 +23,7 @@
               <!-- Header: tiêu đề + nút thêm -->
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="card-title mb-0">Danh sách nhân viên</h5>
-                <button class="btn btn-primary btn-sm" onclick="loadPage('section/staff/add.html')">
+                <button class="btn btn-primary btn-sm" onclick="loadPage('section/staff/add-staff.html')">
                   <i class="bi bi-person-plus"></i> Thêm nhân viên
                 </button>
               </div>
@@ -31,22 +31,13 @@
               <!-- Bộ lọc + Search -->
               <div class="d-flex align-items-center gap-3 mb-3 flex-nowrap">
 
-                <!-- Select Vai trò -->
-                <div class="col-auto me-3"> <!-- Thêm khoảng cách -->
-                  <span>Nguời quản lý:</span>
-                  <select name="userRole" id="userRole">
-                    <option value="all">Tất cả</option>
-                    <option value="staff">code + ten</option>
-                  </select>
-                </div>
-
                 <!-- Select Trạng thái -->
                 <div class="col-auto">
                   <span>Trạng thái:</span>
                   <select name="staffStatus" id="staffStatus">
                     <option value="all">Tất cả</option>
                     <option value="active">Hoạt động</option>
-                    <option value="inactive">Ngưng hoạt động</option>
+                    <option value="inactive">Ngừng hoạt động</option>
                   </select>
                 </div>
 

@@ -59,22 +59,41 @@ export async function loadStaffManagement(page = 0){
     }
 }
 
-// function attachTableEvents() {
-//     document.querySelectorAll(".delete-btn").forEach(btn => {
-//         btn.addEventListener("click", (e) => {
-//             const id = e.target.closest("tr").dataset.id;
-//             handleDelete(id);
-//         });
-//     });
+const handleDelete = async (id) => {
+    const token = localStorage.getItem("jwt");
+    const response = await fetch(`${Base_Url}/api/employee/delete/v1/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const result = await response.json();
+    if(result.statusCode === 200){
+        showToast("Xóa thành công", "success");
+        window.location.reload();
+    } else {
+        showToast("Xóa thất bại", "error");
+    }
+}
 
-//     document.querySelectorAll(".edit-btn").forEach(btn => {
-//         btn.addEventListener("click", (e) => {
-//             const id = e.target.closest("tr").dataset.id;
-//             // TODO: handleEdit(id);
-//             console.log("Edit:", id);
-//         });
-//     });
-// }
+
+function attachTableEvents() {
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const id = e.target.closest("tr").dataset.id;
+            handleDelete(id);
+        });
+    });
+
+    document.querySelectorAll(".edit-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const id = e.target.closest("tr").dataset.id;
+            // TODO: handleEdit(id);
+            console.log("Edit:", id);
+        });
+    });
+}
 
 function renderTable(staffs){
     const tbody = document.querySelector("#staff-table tbody");
@@ -100,7 +119,7 @@ function renderTable(staffs){
             </td>
         </tr>
     `).join('');
-    // attachTableEvents();
+    attachTableEvents();
 }
 
 function renderPagination(totalPages, current){

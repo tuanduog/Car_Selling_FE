@@ -59,6 +59,7 @@ export async function loadLeaderManagement(page = 0){
     }
 }
 
+// delete
 const handleDelete = async (id) => {
     const token = localStorage.getItem("jwt");
     const response = await fetch(`${Base_Url}/api/employee/delete/v1/${id}`, {
@@ -77,6 +78,30 @@ const handleDelete = async (id) => {
     }
 }
 
+// edit
+const handleEdit = async (id) => {
+     try {
+        const token = localStorage.getItem("jwt");
+        const response = await fetch(`${Base_Url}/api/employee/v1/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        const result = await response.json();
+        if(result.statusCode === 200){
+            return result.data;
+        } else {
+            showToast("Lấy thông tin thất bại", "error");
+            return null;
+        }
+    } catch(error){
+        console.error(error);
+        return null;
+    }
+}
+
 function attachTableEvents() {
     document.querySelectorAll(".delete-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
@@ -88,8 +113,7 @@ function attachTableEvents() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const id = e.target.closest("tr").dataset.id;
-            // TODO: handleEdit(id);
-            console.log("Edit:", id);
+            handleEdit(id);
         });
     });
 }

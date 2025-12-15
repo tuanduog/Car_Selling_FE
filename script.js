@@ -27,13 +27,19 @@ async function loadPage(url) {
         }, 0);
     }
 
-    if(url.includes("add")){
+    if(url.includes("add-leader")){
         const module = await import('./js/add-leader.js');
         requestAnimationFrame(() => {
             module.initAddLeader();
         });
     }
 
+    if(url.includes("add-staff")){
+        const module = await import('./js/add-staff.js');
+        requestAnimationFrame(() => {
+            module.initAddStaff();
+        })
+    }
     
     fillUserInfo();
 

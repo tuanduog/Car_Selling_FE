@@ -88,15 +88,26 @@ async function handleToggleLock(id){
 }
 window.handleToggleLock = handleToggleLock;
 
+function formatDate(isoString) {
+    if (!isoString) return "";
+    const d = new Date(isoString);
+
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
 function renderTable(accounts){
     const tbody = document.querySelector("#account-table tbody");
     tbody.innerHTML = accounts.map(acc => `
         <tr>
             <td>${acc.fullName}</td>
             <td>${acc.email}</td>
-            <td>${acc.role}</td>
-            <td>${acc.createdAt ? acc.createdAt : ""}</td>
-            <td>${acc.updatedAt ? acc.updatedAt : ""}</td>
+            <td>${acc.role == "Staff" ? "Nhân viên" : acc.role == "Customer" ? "Khách hàng" : "Trưởng nhóm"}</td>
+            <td>${acc.createdAt ? formatDate(acc.createdAt) : ""}</td>
+            <td>${acc.updatedAt ? formatDate(acc.updatedAt) : ""}</td>
             <td>
                 <span class="badge ${acc.status == 1 ? "bg-success" : "bg-warning text-dark"}">
                     ${acc.status == 1 ? "Hoạt động" : "Ngừng hoạt động"}
@@ -115,30 +126,55 @@ function renderTable(accounts){
     `).join('');
 }
 
-function renderPagination(totalPages, current){
+function renderPagination(totalPages, current) {
     const container = document.getElementById('pagination');
     container.innerHTML = "";
 
-    // Previous
-    const prevBtn = document.createElement('button');
-    prevBtn.textContent = "Previous";
-    prevBtn.disabled = current === 0;
-    prevBtn.addEventListener('click', () => loadAccountManagement(current - 1));
-    container.appendChild(prevBtn);
-
-    // Nút từng trang
-    for(let i = 0; i < totalPages; i++){
+    const createBtn = (label, page, disabled = false, isActive = false) => {
         const btn = document.createElement('button');
-        btn.textContent = (i + 1);
-        if(i === current) btn.disabled = true;
-        btn.addEventListener('click', () => loadAccountManagement(i));
-        container.appendChild(btn);
+        btn.textContent = label;
+        btn.disabled = disabled;
+        if (isActive) btn.classList.add('active');
+        btn.addEventListener('click', () => loadAccountManagement(page));
+        return btn;
+    };
+
+    // Previous
+    container.appendChild(
+        createBtn("Previous", current - 1, current === 0)
+    );
+
+    const delta = 2;
+    let start = Math.max(0, current - delta);
+    let end = Math.min(totalPages - 1, current + delta);
+
+    // luôn có trang đầu
+    if (start > 0) {
+        container.appendChild(createBtn(1, 0));
+        if (start > 1) {
+            container.appendChild(document.createTextNode(" ... "));
+        }
+    }
+
+    // các trang ở giữa
+    for (let i = start; i <= end; i++) {
+        container.appendChild(
+            createBtn(i + 1, i, false, i === current)
+        );
+    }
+
+    // luôn có trang cuối
+    if (end < totalPages - 1) {
+        if (end < totalPages - 2) {
+            container.appendChild(document.createTextNode(" ... "));
+        }
+        container.appendChild(
+            createBtn(totalPages, totalPages - 1)
+        );
     }
 
     // Next
-    const nextBtn = document.createElement('button');
-    nextBtn.textContent = "Next";
-    nextBtn.disabled = current === totalPages - 1;
-    nextBtn.addEventListener('click', () => loadAccountManagement(current + 1));
-    container.appendChild(nextBtn);
+    container.appendChild(
+        createBtn("Next", current + 1, current === totalPages - 1)
+    );
 }

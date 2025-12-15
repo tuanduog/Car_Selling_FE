@@ -1,17 +1,38 @@
 const Base_Url = "http://localhost:7000"; // URL backend
-import { getLeader } from "./leader";
 
 //================ modal leader ==================
 
 let page = 0;
-let keyword = "";
-const status = 1
+const status = 1;
+let selectedManager = null;
 
-async function loadLeaderPopup() {
+async function getLeader(page = 0, keyword, status) {
+    const token = localStorage.getItem('jwt');
+    const response = await fetch(`${Base_Url}/api/employee/v1?page=${page}&keyword=${encodeURIComponent(keyword)}&status=${encodeURIComponent(status)}&role=Teamleader`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+}
+
+async function loadLeaderPopup(newPage = 0) {
+    page = newPage;
+    const searchInput = document.getElementById("managerSearch");
+    if (!searchInput) return;
+
+    const keyword = searchInput.value.trim();
+
     try {
         const leaders = await getLeader(page, keyword, status);
         renderLeaderTable(leaders.data.content);
-        renderPagination(leaders.data.totalPages, Number(currentPage));
+        renderPagination(leaders.data.totalPages, Number(page));
     } catch(error){
         console.error("Lỗi khi fetch leader:", error);
     }
@@ -20,18 +41,59 @@ async function loadLeaderPopup() {
 function renderLeaderTable(leaders){
     const tbody = document.getElementById("managerTableBody");
 
-    tbody.innerHTML = leaders.map(leader => `
-        <tr data-id="${leader.id}">
-            <td>${leader.code}</td>
-            <td>${leader.fullName}</td>
-            <td>${leader.email}</td>
-            <td>${leader.phone ? leader.phone : ''}</td>
-            <td class="text-center d-flex gap-2 justify-content-center">
-                
-            </td>
-        </tr>
-    `).join('');
+    tbody.innerHTML = leaders.map(leader => {
+        const checked = selectedManager && leader.id == selectedManager.id ? "checked" : "";
+        return `
+            <tr data-id="${leader.id}">
+                <td>${leader.code}</td>
+                <td>${leader.fullName}</td>
+                <td>${leader.email}</td>
+                <td>${leader.phone ? leader.phone : ''}</td>
+                <td class="text-center">
+                    <input 
+                        type="radio" 
+                        name="managerRadio"
+                        value="${leader.id}"
+                        data-code="${leader.code}"
+                        data-name="${leader.fullName}"
+                        style="cursor: pointer; transform: scale(1.4);"
+                        ${checked}
+                    >
+                </td>
+            </tr>
+        `;
+    }
+    ).join('');
 }
+
+document.getElementById("managerTableBody")
+.addEventListener("change", (e) => {
+    if (e.target.name === "managerRadio") {
+        selectedManager = {
+            id: e.target.value,
+            code: e.target.dataset.code,
+            fullName: e.target.dataset.name
+        };
+    }
+});
+
+document.getElementById("confirmManager")
+.addEventListener("click", () => {
+
+    if (!selectedManager) {
+        alert("Vui lòng chọn người quản lý");
+        return;
+    }
+
+    document.getElementById("manager").value =
+        `${selectedManager.fullName}`;
+
+    document.getElementById("managerId").value =
+        selectedManager.id;
+
+    const modalEl = document.getElementById("managerModal");
+    bootstrap.Modal.getInstance(modalEl).hide();
+});
 
 function renderPagination(totalPages, current){
     const container = document.getElementById('tablePagination');
@@ -41,7 +103,7 @@ function renderPagination(totalPages, current){
     const prevBtn = document.createElement('button');
     prevBtn.textContent = "Previous";
     prevBtn.disabled = current === 0;
-    prevBtn.addEventListener('click', () => loadLeaderManagement(current - 1));
+    prevBtn.addEventListener('click', () => loadLeaderPopup(current - 1));
     container.appendChild(prevBtn);
 
     // Nút từng trang
@@ -49,7 +111,7 @@ function renderPagination(totalPages, current){
         const btn = document.createElement('button');
         btn.textContent = (i + 1);
         if(i === current) btn.disabled = true;
-        btn.addEventListener('click', () => loadLeaderManagement(i));
+        btn.addEventListener('click', () => loadLeaderPopup(i));
         container.appendChild(btn);
     }
 
@@ -57,14 +119,9 @@ function renderPagination(totalPages, current){
     const nextBtn = document.createElement('button');
     nextBtn.textContent = "Next";
     nextBtn.disabled = current === totalPages - 1;
-    nextBtn.addEventListener('click', () => loadLeaderManagement(current + 1));
+    nextBtn.addEventListener('click', () => loadLeaderPopup(current + 1));
     container.appendChild(nextBtn);
 }
-
-document.getElementById("managerModal")
-    ?.addEventListener("shown.bs.modal", () => {
-        loadLeaderPopup();
-    });
 
 //================ end ==================
 
@@ -72,6 +129,26 @@ export async function initAddStaff() {
     const btn = document.getElementById('addStaff');
     console.log('Button found:', btn);
     if(!btn) return;
+
+    const modal = document.getElementById("managerModal");
+    if (modal && !modal.dataset.loaded) {
+        modal.addEventListener("shown.bs.modal", () => {
+            loadLeaderPopup(0);
+        });
+        modal.dataset.loaded = "true";
+    }
+
+    const searchInput = document.getElementById("managerSearch");
+    if (searchInput && !searchInput.dataset.listenerAttached) {
+        let timeout;
+        searchInput.addEventListener("input", () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                loadLeaderPopup(0);
+            }, 300);
+        });
+        searchInput.dataset.listenerAttached = "true";
+    }
 
     btn.addEventListener('click', async function (event) {
         event.preventDefault();
@@ -85,7 +162,7 @@ export async function initAddStaff() {
         const address = document.getElementById('address1')?.value.trim() || '';
         const phone = document.getElementById('phone1')?.value.trim() || '';
 
-        if(!code || !fullName || !email || !phone) { 
+        if(!code || !fullName || !email || !phone || !selectedManager) { 
             alert('Vui lòng điền đầy đủ các trường bắt buộc (*)'); 
             return; 
         }
@@ -101,7 +178,7 @@ export async function initAddStaff() {
             return; 
         }
 
-        const data = { code, fullName, email, birthDay, gender, address, phone, role: "Staff" };
+        const data = { code, fullName, email, birthDay, gender, address, phone, role: "Staff", managerId: selectedManager.id };
 
         try {
             const response = await fetch(`${Base_Url}/api/employee/v1`, {
