@@ -130,18 +130,22 @@ function renderPagination(totalPages, current) {
     const container = document.getElementById('pagination');
     container.innerHTML = "";
 
-    const createBtn = (label, page, disabled = false, isActive = false) => {
+    const createBtn = (iconHtml, page, disabled = false, isActive = false) => {
         const btn = document.createElement('button');
-        btn.textContent = label;
+        btn.innerHTML = iconHtml;
         btn.disabled = disabled;
         if (isActive) btn.classList.add('active');
         btn.addEventListener('click', () => loadAccountManagement(page));
         return btn;
     };
 
+    container.appendChild(
+        createBtn(`<i class="bi bi-chevron-bar-left"></i>`, 0, current === 0)
+    )
+
     // Previous
     container.appendChild(
-        createBtn("Previous", current - 1, current === 0)
+        createBtn(`<i class="bi bi-chevron-left"></i>`, current - 1, current === 0)
     );
 
     const delta = 2;
@@ -175,6 +179,10 @@ function renderPagination(totalPages, current) {
 
     // Next
     container.appendChild(
-        createBtn("Next", current + 1, current === totalPages - 1)
+        createBtn(`<i class="bi bi-chevron-right"></i>`, current + 1, current === totalPages - 1)
+    )
+
+    container.appendChild(
+        createBtn(`<i class="bi bi-chevron-bar-right"></i>`, totalPages - 1, current === totalPages - 1)
     );
 }

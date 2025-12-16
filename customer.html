@@ -2,787 +2,326 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Trang chủ</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        /* Slideshow zoom */
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            transition: transform 5s ease;
-        }
-
-        .carousel-item.active img {
-            transform: scale(1.05);
-        }
-
-        /* WRAPPER CHUNG CHO CẢ SLIDESHOW + SẢN PHẨM */
-        .content-wrapper {
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        body:not(.toggle-sidebar) .content-wrapper {
-            margin-left: 20px;
-            width: calc(100% - 20px);
-        }
-
-        body.toggle-sidebar .content-wrapper {
-            margin-left: 0;
-            width: 100%;
-        }
-
-        .products-wrapper {
-            transition: all 0.3s ease;
-        }
-
-        .pagetitle h1 {
-            color: #000 !important;
-        }
-
-        .card {
-            border: none;
-            overflow: hidden;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-        }
-
-        .card img {
-            transition: transform .3s ease;
-        }
-
-        .car-title,
-        .car-price {
-            transition: color .3s ease, transform .3s ease;
-        }
-
-        .card:hover img,
-        .card:hover .car-title,
-        .card:hover .car-price {
-            transform: scale(1.05);
-        }
-
-        .card:hover .car-title {
-            color: #006dff;
-        }
-
-        .card:hover .car-price {
-            color: #007bff;
-        }
-
-
-        /* ---- FORMAT SẢN PHẨM ---- */
-        .car-title {
-            font-weight: 700;
-            font-size: 20px;
-            margin: 10px 0 5px 0 !important;
-            padding: 0 !important;
-
-            display: flex;
-            align-items: center;
-
-            gap: 6px;
-            text-transform: uppercase;
-            color: #000;
-            justify-content: center;
-        }
-
-        .car-title::before {
-            content: "";
-            width: 4px;
-            height: 22px;
-            background: #007bff;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
-
-        .car-price {
-            font-weight: 600;
-            margin-top: 5px;
-            color: #444;
-            text-transform: uppercase;
-        }
-
-        .car-link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .car-link:hover {
-            color: inherit;
-        }
-
-        .card {
-            border: none;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-
-        /* Tin tức */
-        .card:hover img {
-            transform: scale(1.05);
-            transition: 0.3s;
-        }
-
-        .card img {
-            transition: 0.3s;
-        }
-
-        .card h5 {
-            font-size: 18px;
-            line-height: 1.35;
-        }
-
-        .card p {
-            font-size: 15px;
-        }
-
-        .card {
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-        }
-
-        .news-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-
-        .news-title::after,
-        .news-title::before {
-            content: "";
-            flex: 1;
-            height: 2px;
-            background: #000;
-            max-width: 120px;
-        }
-
-        /* GẠCH NGANG FULL WIDTH SAU CHỮ TIN TỨC */
-        .news-title-wrapper {
-            position: relative;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .news-title-wrapper h2 {
-            display: inline-block;
-            background: #fff;
-            padding: 0 25px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .news-title-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #ccc;
-            z-index: 1;
-        }
-
-        #newsCarousel .carousel-item {
-            transition: transform 0.6s ease;
-        }
-
-        #newsCarousel .carousel-control-prev,
-        #newsCarousel .carousel-control-next {
-            opacity: 0;
-            transition: 0.3s;
-        }
-
-        #newsCarousel:hover .carousel-control-prev,
-        #newsCarousel:hover .carousel-control-next {
-            opacity: 1;
-        }
-
-
-        /* Background form */
-        .gift-form-section {
-            background: url('assets/img/FormQua.jpg') center/cover no-repeat;
-            padding: 70px 20px;
-            position: relative;
-            color: white;
-        }
-
-        .gift-form-container {
-            max-width: 900px;
-            margin: auto;
-            text-shadow: 0 1px 3px #000;
-        }
-
-        .gift-title {
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .gift-subtitle {
-            font-size: 17px;
-        }
-
-        .gift-mid-title {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .gift-form {
-            padding: 0;
-            background: transparent !important;
-            backdrop-filter: none !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        .gift-input {
-            width: 100%;
-            padding: 14px 18px;
-            margin-bottom: 14px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(3px);
-            outline: none;
-            color: #000;
-            font-size: 16px;
-        }
-
-        .gift-input::placeholder {
-            color: #333;
-        }
-
-        /* Radio */
-        .gift-radio label {
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        /* Button */
-        .gift-btn {
-            width: 35%;
-            padding: 14px;
-            background: #006dff;
-            border-radius: 30px;
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* Success message */
-        .gift-success {
-            background: rgba(0, 200, 0, 0.35);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .form-container {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-control {
-            background: rgba(255, 255, 255, 0.35) !important;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: #000;
-        }
-
-        .form-control::placeholder {
-            color: #333;
-            font-weight: 500;
-        }
-
-        form select {
-            color: #333 !important;
-        }
-
-        /* --- NÚT ZALO + HOTLINE --- */
-        .floating-buttons {
-            position: fixed;
-            bottom: 60px;
-            right: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 9999;
-        }
-
-        .floating-buttons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-        }
-
-        .floating-buttons a:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Icon Zalo */
-        .btn-zalo img {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Icon Hotline */
-        .btn-hotline i {
-            font-size: 28px;
-            color: #00a2ff;
-        }
-
-
-        .btn-zalo:hover,
-        .btn-hotline:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-        }
-
-        /* FOOTER */
-        .vinfast-footer {
-            background: #fff;
-            border-top: 1px solid #ddd;
-            font-size: 16px;
-        }
-
-        .footer-logo {
-            width: 350px;
-            max-width: 100%;
-            height: auto;
-        }
-
-
-        .footer-title {
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .footer-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-list li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 16px;
-            cursor: pointer;
-        }
-
-        .footer-list li::before {
-            content: "›";
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #000;
-        }
-
-        .footer-btn {
-            background: #006dff;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .footer-title {
-            white-space: nowrap;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <script type="text/javascript" src="api/login.js" defer></script>
+  <script type="text/javascript" src="customer.js" defer></script>
+  <style>
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all .4s ease;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast.error {
+      background: #f44336;
+    }
+    
+    #pagination {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagination-btn {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 6px;
+        font-size: 13px;
+        border: 1px solid #dee2e6;
+        background: #fff;
+        color: #0d6efd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .pagination-btn i {
+        font-size: 14px;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+        background: #e9ecef;
+    }
+
+    #pagination button.active {
+      font-weight: bold;
+      background: #0d6efd;
+      color: #fff;
+    }
+
+    .pagination-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    /* ===============================
+        SIDEBAR RIGHT OVERLAY
+    ================================ */
+
+    .sidebar {
+    position: fixed !important;
+    top: 80px;
+    right: -300px;
+    left: auto !important;
+    bottom: 0;
+    width: 300px;
+    z-index: 1050;
+    transition: all 0.3s ease;
+    }
+
+    .toggle-sidebar .sidebar {
+    right: 0;
+    }
+
+    #main,
+    #footer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    }
+
+    @media (min-width: 1200px) {
+    #main,
+    #footer,
+    .toggle-sidebar #main,
+    .toggle-sidebar #footer {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    }
+
+    #header {
+    height: 80px;
+    }
+
+    #header .header-nav,
+    #header .logo,
+    #header .nav-profile {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    }
+    #main {
+    padding-top: 30px;
+    }
+    .menu-bar {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+    }
+    .menu-bar ul {
+        list-style-type: none;
+    }
+    .menu-bar li a {
+        display: block;
+        font-weight: 600;
+        color: #0d6efd;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .menu-bar li:hover {
+        color: #0d6efd;
+    }
+    
+  </style>
 </head>
 
 <body>
-    <main id="main" class="main">
-        <div>
-            <div class="content-wrapper">
+  <div id="toast" class="toast hidden"></div>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
-                <!-- Slideshow -->
-                <div class="carousel-wrapper mb-4">
-                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="customer.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NiceCar</span>
+      </a>
+    </div><!-- End Logo -->
 
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/img/head1.jpg">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/head2.jpg">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/head3.png">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/head4.jpg">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/head5.jpg">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/head6.jpg">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/head7.jpg">
-                            </div>
-                        </div>
+    <div class="menu-bar">
+    <ul class="d-flex gap-4 mb-0">
+        <li><a onclick="loadPage('pages-customer/home.html')">TRANG CHỦ</a></li>
+        <li><a onclick="loadPage('pages-customer/product.html')">SẢN PHẨM</a></li>
+        <li><a onclick="loadPage('pages-customer/accessory.html')">PHỤ KIỆN</a></li>
+    </ul>
+    </div>
+    <!-- End Menu Bar -->
 
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
 
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
+        <li class="nav-item dropdown pe-3">
 
-                    </div>
-                </div>
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2" id="fullNameSpan"></span>
+          </a><!-- End Profile Iamge Icon -->
 
-                <!-- Sản phẩm -->
-                <div class="pagetitle">
-                    <h1>BẢNG GIÁ Ô TÔ ĐIỆN VINFAST 2025</h1>
-                </div>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6 id="fullNameH6"></h6>
+              <span id="email"></span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                <section class="section products-wrapper">
-                    <div class="row g-4">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" onclick="loadPage('pages/user-profile.html')" style="cursor: pointer;">
+                <i class="bi bi-person"></i>
+                <span>Thông tin cá nhân</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <!-- VF 3 -->
-                        <div class="col-lg-4">
-                            <a href="section/product/vf3-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/VF3-red.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST VF 3</h3>
-                                    <p class="car-price">GIÁ: 299.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Hỏi đáp & hỗ trợ</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <!-- VF 5 -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/VF5-cam.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST VF 5 PLUS</h3>
-                                    <p class="car-price">GIÁ: 529.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" id="btnLogout" style="cursor: pointer;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Đăng xuất</span>
+              </a>
+            </li>
 
-                        <!-- VF 6 -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/VF6-green.jpg" class="card-img-top">
-                                    <h3 class="car-title">VINFAST VF 6 ECO</h3>
-                                    <p class="car-price">GIÁ: 694.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
 
-                        <!-- VF 7 -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/VF7-grey.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST VF 7 ECO</h3>
-                                    <p class="car-price">GIÁ: 799.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+        <li class="nav-item dropdown pe-3">
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </li>
 
-                        <!-- VF 8 -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/VF8-black.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST VF 8 ECO</h3>
-                                    <p class="car-price">GIÁ: 1.019.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+      </ul>
+    </nav><!-- End Icons Navigation -->
 
-                        <!-- VF 9 -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/VF9-black.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST VF 9 ECO</h3>
-                                    <p class="car-price">GIÁ: 1.499.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+  </header><!-- End Header -->
 
-                        <!-- VF Limo -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/limo-red.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST LIMO GREEN</h3>
-                                    <p class="car-price">GIÁ: 749.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
 
-                        <!-- VF ECVan -->
-                        <div class="col-lg-4">
-                            <a href="car-detail.html" class="car-link">
-                                <div class="card text-center">
-                                    <img src="assets/img/ecvan-green.png" class="card-img-top">
-                                    <h3 class="car-title">VINFAST ECVAN</h3>
-                                    <p class="car-price">GIÁ: 285.000.000₫</p>
-                                </div>
-                            </a>
-                        </div>
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-                    </div>
-                </section>
+        <li class="nav-item">Tiện ích</li>
 
-                <!-- TIN TỨC -->
-                <section class="container my-5">
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+          <span>So sánh xe</span>
+        </a>
+      </li>
 
-                    <div class="news-title-wrapper">
-                        <h2 class="fw-bold m-0" style="font-size:28px;">TIN TỨC</h2>
-                    </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+          <span>Dự toán trả góp</span>
+        </a>
+      </li>
 
-                    <div id="newsCarousel" class="carousel slide" data-bs-ride="false">
+      <li class="nav-item">Mua sắm</li>
 
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row g-4">
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+          <span>Sản phẩm</span>
+        </a>
+      </li>
 
-                                    <div class="col-lg-4">
-                                        <div class="card border-0 shadow-sm h-100">
-                                            <img src="assets/img/news1.png" class="card-img-top">
-                                            <div class="card-body text-center">
-                                                <h5 class="fw-bold">Dừng miễn thuế trước bạ xe điện? Mua xe VinFast ngay
-                                                    hôm nay!</h5>
-                                                <p class="text-muted mt-2">Mua xe VinFast ngay để tiết kiệm thuế trước
-                                                    bạ.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+          <span>Phụ kiện xe</span>
+        </a>
+      </li>
 
-                                    <div class="col-lg-4">
-                                        <div class="card border-0 shadow-sm h-100">
-                                            <img src="assets/img/news2.png" class="card-img-top">
-                                            <div class="card-body text-center">
-                                                <h5 class="fw-bold">Bấm biển số online qua VNeID từ 1/1/2025</h5>
-                                                <p class="text-muted mt-2">Thủ tục đăng ký biển số online.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+      <li class="nav-item">Hỗ trợ</li>
 
-                                    <div class="col-lg-4">
-                                        <div class="card border-0 shadow-sm h-100">
-                                            <img src="assets/img/news3.png" class="card-img-top">
-                                            <div class="card-body text-center">
-                                                <h5 class="fw-bold">VinFast VF8 Lướt – Giá tốt</h5>
-                                                <p class="text-muted mt-2">Xe đẹp – sẵn giao ngay.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+          <span>Tìm showroom & trạm sạc</span>
+        </a>
+      </li>
 
-                                </div>
-                            </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+          <span>Câu hỏi thường gặp</span>
+        </a>
+      </li>
 
-                            <div class="carousel-item">
-                                <div class="row g-4">
+    </ul>
 
-                                    <div class="col-lg-4">
-                                        <div class="card border-0 shadow-sm h-100">
-                                            <img src="assets/img/news4.png" class="card-img-top">
-                                            <div class="card-body text-center">
-                                                <h5 class="fw-bold">VinFast EC Van – Xe van điện 2 chỗ</h5>
-                                                <p class="text-muted mt-2">Mẫu xe van điện đầu tiên tại Việt Nam.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+  </aside><!-- End Sidebar-->
 
-                                    <div class="col-lg-4">
-                                        <div class="card border-0 shadow-sm h-100">
-                                            <img src="assets/img/news5.png" class="card-img-top">
-                                            <div class="card-body text-center">
-                                                <h5 class="fw-bold">VF6 2025 – Thông số mới nhất</h5>
-                                                <p class="text-muted mt-2">Xe điện nhỏ gọn – an toàn – hiện đại.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+  <main id="mainContent"></main>
 
-                                </div>
-                            </div>
+  <!-- ======= Footer ======= -->
 
-                        </div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-                        <!-- NÚT NEXT / PREV -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-                        <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-
-                    </div>
-
-                </section>
-
-
-            </div>
-
-            </section>
-
-
-        </div>
-
-        <!-- FORM NHẬN QUÀ / ĐĂNG KÝ -->
-        <section class="gift-form-section py-5">
-            <div class="gift-form-container">
-
-                <h2 class="gift-title text-center">
-                    HÃY ĐẶT DẤU TIÊN PHONG CHO KỶ NGUYÊN XE ĐIỆN THÔNG MINH TẠI VIỆT NAM
-                </h2>
-                <p class="gift-subtitle text-center">
-                    Quý khách vui lòng liên hệ qua <b>Hotline</b> và <b>Zalo</b> được hỗ trợ nhanh nhất trong 1 phút
-                </p>
-
-                <h3 class="gift-mid-title text-center mt-4 mb-4">
-                    NHẬN BÁO GIÁ & ĐĂNG KÝ LÁI THỬ
-                </h3>
-
-                <form class="gift-form">
-
-                    <!-- Hình thức thanh toán -->
-                    <div class="gift-radio mb-3">
-                        <label><input type="radio" name="thanhtoan" checked> Trả góp</label>
-                        <label class="ms-3"><input type="radio" name="thanhtoan"> Trả thẳng</label>
-                    </div>
-
-                    <input type="text" class="gift-input" placeholder="Họ và tên" required>
-                    <input type="text" class="gift-input" placeholder="Số điện thoại" required>
-                    <select class="gift-input" required>
-                        <option value="" disabled selected>Xe muốn mua</option>
-                        <option value="VF3">VinFast VF 3</option>
-                        <option value="VF5Plus">VinFast VF 5 Plus</option>
-                        <option value="VF6Eco">VinFast VF 6 Eco</option>
-                        <option value="VF7Eco">VinFast VF 7 Eco</option>
-                        <option value="VF8Eco">VinFast VF 8 Eco</option>
-                        <option value="VF9Eco">VinFast VF 9 Eco</option>
-                        <option value="LimoGreen">VinFast Limo Green</option>
-                        <option value="ECVan">VinFast ECVan</option>
-                    </select>
-
-                    <button class="gift-btn">NHẬN QUÀ TẶNG MIỄN PHÍ</button>
-
-                </form>
-            </div>
-        </section>
-
-        <!-- NÚT ZALO + HOTLINE CỐ ĐỊNH -->
-        <div class="floating-buttons">
-            <a class="btn-zalo" href="#">
-                <img src="assets/img/zalo.png" alt="Zalo">
-            </a>
-            <a class="btn-hotline" href="tel:0384015192">
-                <i class="bi bi-telephone-fill"></i>
-            </a>
-        </div>
-
-        </div>
-        <footer class="vinfast-footer py-5">
-            <div class="container">
-
-                <div class="row gy-4">
-
-                    <!-- LOGO + INFO -->
-                    <div class="col-lg-4 text-center text-lg-start">
-                        <img src="assets/img/logo-chu.png" class="footer-logo mb-3">
-
-                        <p><b>Trụ sở chính:</b> 68 Trịnh Văn Bô, Nam Từ Liêm, Hà Nội.</p>
-                        <p><b>Hotline:</b> 0914.593.931</p>
-                        <p><b>Email:</b> vinfastvietnam.cskh@gmail.com</p>
-
-                        <div class="d-flex gap-3 justify-content-center justify-content-lg-start mt-3">
-                            <a class="footer-btn">
-                                <i class="bi bi-telephone"></i> CALL VN
-                            </a>
-                            <a class="footer-btn">
-                                <i class="bi bi-envelope"></i> E-MAIL
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- SẢN PHẨM MỚI -->
-                    <div class="col-lg-3">
-                        <h5 class="footer-title">SẢN PHẨM MỚI</h5>
-                        <ul class="footer-list">
-                            <li>VinFast ECVan</li>
-                            <li>VinFast Limo Green</li>
-                        </ul>
-                    </div>
-
-                    <!-- SẢN PHẨM HOT -->
-                    <div class="col-lg-3">
-                        <h5 class="footer-title">SẢN PHẨM HOT</h5>
-                        <ul class="footer-list">
-                            <li>VinFast VF3</li>
-                            <li>VinFast VF5</li>
-                            <li>VinFast VF6</li>
-                        </ul>
-                    </div>
-
-                    <!-- SẢN PHẨM ĐẲNG CẤP -->
-                    <div class="col-lg-2">
-                        <h5 class="footer-title">SẢN PHẨM ĐẲNG CẤP</h5>
-                        <ul class="footer-list">
-                            <li>VinFast VF7</li>
-                            <li>VinFast VF8</li>
-                            <li>VinFast VF9</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- FOOTER -->
-
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 

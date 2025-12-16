@@ -15,33 +15,110 @@
 
       <!-- Vertical Form -->
       <form class="row g-3">
-        <div class="col-12">
-          <label for="inputNanme" class="form-label">Họ và tên</label>
-          <input type="text" class="form-control" id="inputNanme">
-        </div>
-        <div class="col-12">
-          <label for="inputEmail" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail">
-        </div>
-        <div class="col-12">
-          <label for="status" class="form-label">Trạng thái</label>
-          <select id="status" class="form-select" required>
-            <option selected disabled>--Chọn--</option>
-            <option>Hoạt động</option>
-            <option>Ngưng hoạt động</option>
-            <option>Bị khóa</option>
-          </select>
-        </div>
-        <div class="col-12">
-          <label for="dateCreate" class="form-label">Ngày tạo</label>
-          <input type="date" class="form-control" id="dateCreate">
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Sửa</button>
-          <button type="reset" class="btn btn-secondary">Hủy</button>
-        </div>
-      </form><!-- Vertical Form -->
+    <!-- Mã nhân viên -->
+    <div class="col-12">
+        <label for="employeeCode" class="form-label">Mã nhân viên <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="employeeCode1" name="employeeCode" required>
+    </div>
+
+    <!-- Họ và tên -->
+    <div class="col-12">
+        <label for="fullName" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="fullName1" name="fullName" required>
+    </div>
+
+    <!-- Email -->
+    <div class="col-12">
+        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+        <input type="email" class="form-control" id="email1" name="email" required>
+    </div>
+
+    <!-- Ngày sinh -->
+    <div class="col-12">
+        <label for="birthday" class="form-label">Ngày sinh</label>
+        <input type="date" class="form-control" id="birthday1" name="birthday" required>
+    </div>
+
+    <!-- Giới tính -->
+    <div class="col-12">
+        <label for="gender" class="form-label">Giới tính</label>
+        <select id="gender1" name="gender" class="form-select" required>
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+        <option value="Khác">Khác</option>
+        </select>
+    </div>
+
+    <!-- Địa chỉ -->
+    <div class="col-12">
+        <label for="address" class="form-label">Địa chỉ</label>
+        <input type="text" class="form-control" id="address1" name="address">
+    </div>
+
+    <!-- Số điện thoại -->
+    <div class="col-12">
+        <label for="phone" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+        <input type="tel" class="form-control" id="phone1" name="phone">
+    </div>
+
+    <div class="col-12">
+      <label for="manager" class="form-label">Người quản lý <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="manager" name="manager" readonly data-bs-toggle="modal" data-bs-target="#managerModal">
+      <input hidden id="managerId">
+    </div>
+
+    <!-- Buttons -->
+    <div class="text-center">
+        <button type="button" id="editStaff" class="btn btn-primary">Cập nhật</button>
+    </div>
+    </form>
 
     </div>
   </div>
+
 </main><!-- End #main -->
+
+<div class="modal fade" id="managerModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Chọn người quản lý</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <input
+          type="text"
+          id="managerSearch"
+          class="form-control mb-3"
+          placeholder="Tìm theo họ tên / email..."
+        >
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Mã</th>
+              <th>Họ tên</th>
+              <th>Email</th>
+              <th>Số điện thoại</th>
+              <th>Chọn</th>
+            </tr>
+          </thead>
+          <tbody id="managerTableBody"></tbody>
+        </table>
+
+        <div id="tablePagination" class="mt-2 d-flex justify-content-end"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-primary" id="confirmManager">
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

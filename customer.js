@@ -5,56 +5,7 @@ window.loadPage = async function(url) {
     const res = await fetch(url);
     const html = await res.text();
     document.getElementById('mainContent').innerHTML = html;
-
-    if (url.includes("account-management")) {
-        const module = await import('./js/account.js');
-        requestAnimationFrame(() => {
-            module.loadAccountManagement();
-        });
-    }
-
-    if(url.includes("team-leader-management")){
-        const module = await import('./js/leader.js');
-        setTimeout(() => {
-            module.loadLeaderManagement();
-        }, 0);
-    }
-
-    if(url.includes("staff-management")){
-        const module = await import('./js/staff.js');
-        setTimeout(() => {
-            module.loadStaffManagement();
-        }, 0);
-    }
-
-    if(url.includes("add-leader")){
-        const module = await import('./js/add-leader.js');
-        requestAnimationFrame(() => {
-            module.initAddLeader();
-        });
-    }
-
-    if(url.includes("edit-leader")){
-        const module = await import('./js/edit-leader.js');
-        requestAnimationFrame(() => {
-            module.initEditLeader();
-        })
-    }
-
-    if(url.includes("add-staff")){
-        const module = await import('./js/add-staff.js');
-        requestAnimationFrame(() => {
-            module.initAddStaff();
-        })
-    }
-
-    if(url.includes("edit-staff")){
-        const module = await import('./js/edit-staff.js');
-        requestAnimationFrame(() => {
-            module.initEditStaff();
-        })
-    }
-    
+   
     fillUserInfo();
 
     if(url.includes("profile")) {
@@ -130,8 +81,8 @@ window.addEventListener('DOMContentLoaded', () => {
         loadPage(savedPage);
         setActiveMenu(savedPage)
     } else {
-        loadPage('pages/dashboard.html');
-        setActiveMenu('pages/dashboard.html');
+        loadPage('pages-customer/home.html');
+        setActiveMenu('pages-customer/home.html');
     }
 
 })

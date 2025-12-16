@@ -63,9 +63,32 @@
     .toast.error {
       background: #f44336;
     }
-    #pagination button {
-      margin: 0 2px;
-      padding: 4px 8px;
+    
+    #pagination {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagination-btn {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 6px;
+        font-size: 13px;
+        border: 1px solid #dee2e6;
+        background: #fff;
+        color: #0d6efd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .pagination-btn i {
+        font-size: 14px;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+        background: #e9ecef;
     }
 
     #pagination button.active {
@@ -74,11 +97,11 @@
       color: #fff;
     }
 
-    #pagination {
-      display: flex;
-      gap: 4px;
-      align-items: center;
+    .pagination-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
+
   </style>
 </head>
 

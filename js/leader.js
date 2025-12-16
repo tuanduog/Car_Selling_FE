@@ -53,6 +53,8 @@ export async function loadLeaderManagement(page = 0){
         const leaders = await getLeader(page, keyword, status);
         renderTable(leaders.data.content);
 
+        attachTableEvents();
+
         renderPagination(leaders.data.totalPages, Number(currentPage));
     } catch(error){
         console.error("Lỗi khi fetch leader:", error);
@@ -78,46 +80,28 @@ const handleDelete = async (id) => {
     }
 }
 
-// edit
-const handleEdit = async (id) => {
-     try {
-        const token = localStorage.getItem("jwt");
-        const response = await fetch(`${Base_Url}/api/employee/v1/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-        });
-        const result = await response.json();
-        if(result.statusCode === 200){
-            return result.data;
-        } else {
-            showToast("Lấy thông tin thất bại", "error");
-            return null;
-        }
-    } catch(error){
-        console.error(error);
-        return null;
-    }
+function goToEdit(id){
+    localStorage.setItem('leaderId', id);
+    window.loadPage(`/section/leader/edit-leader.html`);
 }
 
 function attachTableEvents() {
-    document.querySelectorAll(".delete-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const id = e.target.closest("tr").dataset.id;
-            handleDelete(id);
-        });
-    });
+    const tbody = document.querySelector("#leader-table tbody");
 
-    document.querySelectorAll(".edit-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const id = e.target.closest("tr").dataset.id;
-            handleEdit(id);
-        });
+    tbody.addEventListener("click", (e) => {
+        const tr = e.target.closest("tr");
+        if (!tr) return;
+        const id = tr.dataset.id;
+
+        if (e.target.closest(".delete-btn")) {
+            handleDelete(id);
+        }
+
+        if (e.target.closest(".edit-btn")) {
+            goToEdit(id);
+        }
     });
 }
-
 function renderTable(leaders){
     const tbody = document.querySelector("#leader-table tbody");
     tbody.innerHTML = leaders.map(leader => `
@@ -141,33 +125,65 @@ function renderTable(leaders){
             </td>
         </tr>
     `).join('');
-    attachTableEvents();
 }
 
-function renderPagination(totalPages, current){
+function renderPagination(totalPages, current) {
     const container = document.getElementById('pagination');
     container.innerHTML = "";
 
-    // Previous
-    const prevBtn = document.createElement('button');
-    prevBtn.textContent = "Previous";
-    prevBtn.disabled = current === 0;
-    prevBtn.addEventListener('click', () => loadLeaderManagement(current - 1));
-    container.appendChild(prevBtn);
-
-    // Nút từng trang
-    for(let i = 0; i < totalPages; i++){
+    const createBtn = (iconHtml, page, disabled = false, isActive = false) => {
         const btn = document.createElement('button');
-        btn.textContent = (i + 1);
-        if(i === current) btn.disabled = true;
-        btn.addEventListener('click', () => loadLeaderManagement(i));
-        container.appendChild(btn);
+        btn.innerHTML = iconHtml;
+        btn.disabled = disabled;
+        if (isActive) btn.classList.add('active');
+        btn.addEventListener('click', () => loadLeaderManagement(page));
+        return btn;
+    };
+
+    container.appendChild(
+        createBtn(`<i class="bi bi-chevron-bar-left"></i>`, 0, current === 0)
+    )
+
+    // Previous
+    container.appendChild(
+        createBtn(`<i class="bi bi-chevron-left"></i>`, current - 1, current === 0)
+    );
+
+    const delta = 2;
+    let start = Math.max(0, current - delta);
+    let end = Math.min(totalPages - 1, current + delta);
+
+    // luôn có trang đầu
+    if (start > 0) {
+        container.appendChild(createBtn(1, 0));
+        if (start > 1) {
+            container.appendChild(document.createTextNode(" ... "));
+        }
+    }
+
+    // các trang ở giữa
+    for (let i = start; i <= end; i++) {
+        container.appendChild(
+            createBtn(i + 1, i, false, i === current)
+        );
+    }
+
+    // luôn có trang cuối
+    if (end < totalPages - 1) {
+        if (end < totalPages - 2) {
+            container.appendChild(document.createTextNode(" ... "));
+        }
+        container.appendChild(
+            createBtn(totalPages, totalPages - 1)
+        );
     }
 
     // Next
-    const nextBtn = document.createElement('button');
-    nextBtn.textContent = "Next";
-    nextBtn.disabled = current === totalPages - 1;
-    nextBtn.addEventListener('click', () => loadLeaderManagement(current + 1));
-    container.appendChild(nextBtn);
+    container.appendChild(
+        createBtn(`<i class="bi bi-chevron-right"></i>`, current + 1, current === totalPages - 1)
+    )
+
+    container.appendChild(
+        createBtn(`<i class="bi bi-chevron-bar-right"></i>`, totalPages - 1, current === totalPages - 1)
+    );
 }

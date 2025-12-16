@@ -29,8 +29,12 @@ document.getElementById('submitLogin').addEventListener('click', async function(
         localStorage.setItem('role', data.role);
         if(data.role === "Customer"){
             window.location.href = 'customer.html';
-        } else {
+        } else if(data.role === "Manager"){
             window.location.href = 'index.html';
+        } else if(data.role === "TeamLeader"){
+            window.location.href = "leader.html";
+        } else if(data.role === "Staff"){
+            window.location.href = "staff.html";
         }
     } else {
         alert('Đăng nhập thất bại: ' + result.message);
