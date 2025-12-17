@@ -28,37 +28,20 @@
                         <!-- Bộ lọc + Search -->
                         <div class="d-flex align-items-center gap-3 mb-3 flex-nowrap">
 
-                            <!-- Select Loại xe -->
-                            <div class="col-auto me-3"> 
-                                <span>Loại xe:</span>
-                                <select name="vehicleType" id="vehicleType">
-                                    <option value="all">Tất cả</option>
-                                    <option value="electricCar">Ô tô điện</option>
-                                    <option value="electricMotorbike">Xe máy điện</option>
-                                    <option value="petrolCar">Ô tô xăng</option>
-                                </select>
-                            </div>
-
                             <!-- Select Dòng xe -->
                             <div class="col-auto">
-                                <span>Dòng xe:</span>
+                                <span>Trạng thái:</span>
                                 <select name="vehicleModel" id="vehicleModel">
                                     <option value="all">Tất cả</option>
-                                    <option value="VF3">VinFast VF 3</option>
-                                    <option value="VF5Plus">VinFast VF 5 Plus</option>
-                                    <option value="VF6Eco">VinFast VF 6 Eco</option>
-                                    <option value="VF7Eco">VinFast VF 7 Eco</option>
-                                    <option value="VF8Eco">VinFast VF 8 Eco</option>
-                                    <option value="VF9Eco">VinFast VF 9 Eco</option>
-                                    <option value="LimoGreen">VinFast Limo Green</option>
-                                    <option value="ECVan">VinFast ECVan</option>
+                                    <option value="1">Đang bán</option>
+                                    <option value="0">Tạm dừng bán</option>
                                 </select>
                             </div>
 
                             <!-- Ô Search -->
                             <div class="col-auto ms-auto">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" name="query" placeholder="Search">
+                                    <input type="text" class="form-control" name="query" placeholder="Tìm kiếm ...">
                                     <span class="input-group-text bg-white">
                                         <i class="bi bi-search"></i>
                                     </span>
@@ -70,7 +53,8 @@
                         <table class="table table-striped table-hover datatable align-middle">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Loại xe</th>
+                                    <th>Mã xe</th>
+                                    <th>Tên xe</th>
                                     <th>Phiên bản</th>
                                     <th>Giá niêm yết</th>
                                     <th data-type="date" data-format="YYYY/DD/MM">Ngày ra mắt</th>
@@ -81,6 +65,7 @@
                                 <tr>
                                     <td>VinFast VF 3</td>
                                     <td>299 triệu VNĐ</td>
+                                    <td>321.337.000 VNĐ</td>
                                     <td>321.337.000 VNĐ</td>
                                     <td>2024/05/07</td>
                                     <td class="text-center">

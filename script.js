@@ -54,7 +54,21 @@ window.loadPage = async function(url) {
             module.initEditStaff();
         })
     }
-    
+
+    if(url.includes("add-car")){
+        const module = await import('./js/add-car.js');
+        requestAnimationFrame(() => {
+            module.initAddCar();
+        })
+    }
+
+    if(url.includes("edit-car")){
+        const module = await import('./js/edit-car.js');
+        requestAnimationFrame(() => {
+            module.initEditCar();
+        })
+    }
+
     fillUserInfo();
 
     if(url.includes("profile")) {

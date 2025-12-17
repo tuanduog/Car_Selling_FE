@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dự toán chi phí trả góp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-weight: 600;
+        }
+
+        .note {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .calc-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, .08);
+        }
+
+        .car-preview img {
+            max-width: 100%;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+        }
+
+        .summary-row strong {
+            font-weight: 600;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0d6efd;
+        }
+
+        /* radio price box */
+        .price-option {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .price-option.active {
+            border-color: #0d6efd;
+            background: #f0f6ff;
+        }
+
+        /* buttons percent */
+        .percent-group button {
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 8px 0;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .percent-group button.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+
+        /* interest */
+        .interest-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+
+        .interest-control button {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: #f1f3f5;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .interest-control span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* schedule button */
+        .btn-schedule {
+            background: #9e9e9e;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-schedule:hover {
+            background: #7f7f7f;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 20px 0;
+            background: #f8f9fa;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .percent-group button {
+            border: 1px solid #ddd;
+            background: #fff;
+            transition: all .2s ease;
+        }
+
+        .percent-group button:hover {
+            border-color: #0d6efd;
+            background: #f0f6ff;
+            color: #0d6efd;
+        }
+
+        .percent-group button.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+
+        .loan-group button {
+            border: 1px solid #ddd;
+            background: #fff;
+            transition: all .2s ease;
+        }
+
+        .loan-group button:hover {
+            border-color: #0d6efd;
+            background: #f0f6ff;
+            color: #0d6efd;
+        }
+
+        .loan-group button.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-5">
+
+        <!-- TITLE -->
+        <div class="text-center mb-4">
+            <h1>Dự toán chi phí trả góp</h1>
+            <p class="note">
+                Các giá trị dự toán chỉ mang tính tham khảo.
+                Vui lòng liên hệ showroom hoặc đại lý gần nhất để biết thông tin chính xác.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- LEFT -->
+            <div class="col-lg-7">
+                <div class="car-preview text-center mb-4">
+                    <img src="https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dw4fcf49bc/images/installment-cost/Products-Car-VF3.png"
+                        alt="">
+                </div>
+
+                <div class="summary-row">
+                    <span>Giá xe niêm yết</span>
+                    <strong>299.000.000 VNĐ</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Trả trước</span>
+                    <strong id="downPayment">0 VNĐ</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Số tiền vay</span>
+                    <strong id="loanAmount">299.000.000 VNĐ</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Lãi suất (%/năm)</span>
+                    <strong id="interestText">0%</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Số tiền lãi</span>
+                    <strong>0 VNĐ</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span><strong>Tổng tiền vay & lãi</strong></span>
+                    <span class="total">299.000.000 VNĐ</span>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-5">
+                <div class="calc-box">
+
+                    <!-- MODEL -->
+                    <div class="mb-3">
+                        <label class="form-label">Mẫu xe</label>
+                        <select class="form-select">
+                            <option>VF 3</option>
+                        </select>
+                    </div>
+
+                    <!-- PRICE -->
+                    <label class="form-label">Lựa chọn chi phí trả góp theo</label>
+
+                    <div class="price-option active">
+                        <div>
+                            <input type="radio" checked> Giá xe niêm yết
+                        </div>
+                        <strong>299.000.000 VNĐ</strong>
+                    </div>
+
+                    <div class="price-option">
+                        <div>
+                            <input type="radio"> Giá xe sau ưu đãi
+                        </div>
+                        <span class="text-muted">Nhập giá ưu đãi VNĐ</span>
+                    </div>
+
+                    <!-- TIME -->
+                    <div class="mb-3">
+                        <label class="form-label">Thời gian vay (năm)</label>
+                        <div class="row g-2 loan-group">
+                            <div class="col"><button class="w-100">1</button></div>
+                            <div class="col"><button class="w-100">2</button></div>
+                            <div class="col"><button class="w-100">3</button></div>
+                            <div class="col"><button class="w-100">4</button></div>
+                            <div class="col"><button class="w-100">5</button></div>
+                            <div class="col"><button class="w-100">6</button></div>
+                            <div class="col"><button class="w-100">7</button></div>
+                            <div class="col"><button class="w-100">8</button></div>
+                        </div>
+
+                    </div>
+
+                    <!-- DOWN PAYMENT -->
+                    <div class="mb-3">
+                        <label class="form-label">Số tiền trả trước</label>
+                        <div class="row g-2 percent-group">
+                            <div class="col"><button class="w-100">20%</button></div>
+                            <div class="col"><button class="w-100">30%</button></div>
+                            <div class="col"><button class="w-100">40%</button></div>
+                            <div class="col"><button class="w-100">50%</button></div>
+                            <div class="col"><button class="w-100">60%</button></div>
+                            <div class="col"><button class="w-100">70%</button></div>
+                            <div class="col"><button class="w-100">80%</button></div>
+                            <div class="col"><button class="w-100">90%</button></div>
+                        </div>
+                    </div>
+
+                    <!-- BANK -->
+                    <div class="mb-3">
+                        <label class="form-label">Ngân hàng</label>
+                        <select class="form-select">
+                            <option>Chọn ngân hàng</option>
+                            <option>VPBank</option>
+                            <option>TPBank</option>
+                            <option>Vietcombank</option>
+                        </select>
+                    </div>
+
+                    <!-- INTEREST -->
+                    <div class="mb-4">
+                        <label class="form-label">Lãi suất</label>
+                        <div class="interest-control">
+                            <button type="button" id="minus">−</button>
+                            <span id="interestValue">0%</span>
+                            <button type="button" id="plus">+</button>
+                        </div>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="d-grid">
+                        <button class="btn-schedule">
+                            LỊCH TRẢ GÓP CHI TIẾT
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2025 – Giao diện mô phỏng dự toán chi phí trả góp
+    </footer>
+
+    <script>
+        let interest = 0;
+        const interestValue = document.getElementById('interestValue');
+        const interestText = document.getElementById('interestText');
+
+        document.getElementById('plus').onclick = () => {
+            interest += 0.5;
+            interestValue.innerText = interest + '%';
+            interestText.innerText = interest + '%';
+        };
+
+        document.getElementById('minus').onclick = () => {
+            if (interest > 0) {
+                interest -= 0.5;
+                interestValue.innerText = interest + '%';
+                interestText.innerText = interest + '%';
+            }
+        };
+    </script>
+
+    
+
+</body>
+
+</html>

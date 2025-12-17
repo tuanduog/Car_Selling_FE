@@ -16,16 +16,12 @@
                 <!-- Vertical Form -->
                 <form class="row g-3">
                     <div class="col-12">
-                        <label for="inputCarName" class="form-label">Loại xe</label>
-                        <select id="inputCarName" class="form-select" required>
-                            <option selected disabled>Chọn xe...</option>
-                            <option>VinFast VF 3</option>
-                            <option>VinFast VF 5</option>
-                            <option>VinFast VF 6</option>
-                            <option>VinFast VF 7</option>
-                            <option>VinFast VF 8</option>
-                            <option>VinFast VF 9</option>
-                        </select>
+                        <label for="inputCarCode" class="form-label">Mã xe <span class="text-danger">*</span></label>
+                        <input id="inputCarCode" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputCarName" class="form-label">Tên xe <span class="text-danger">*</span></label>
+                        <input id="inputCarName" class="form-control">
                     </div>
                     <div class="col-12">
                         <label class="form-label d-block">Phiên bản</label>
@@ -35,7 +31,7 @@
                                 type="radio" 
                                 name="version" 
                                 id="versionEco" 
-                                value="eco" 
+                                value="0" 
                                 checked>
                             <label class="form-check-label" for="versionEco">
                                 Eco
@@ -47,30 +43,30 @@
                                 type="radio" 
                                 name="version" 
                                 id="versionPlus" 
-                                value="plus">
+                                value="1">
                             <label class="form-check-label" for="versionPlus">
                                 Plus
                             </label>
                         </div>
                     </div>
                     <div class="col-12">
-                        <label for="inputImage" class="form-label">Thêm hình ảnh</label>
+                        <label for="inputImage" class="form-label">Thêm hình ảnh <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" id="inputImage">
                     </div>
                     <div class="col-12">
-                        <label for="inputImage" class="form-label">Mô tả</label>
-                        <textarea class="form-control"></textarea>
+                        <label for="description" class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="description"></textarea>
                     </div>
                     <div class="col-12">
-                        <label for="inputImage" class="form-label">Thông tin chung</label>
-                        <textarea class="form-control"></textarea>
+                        <label for="detail" class="form-label">Thông tin chung</label>
+                        <textarea class="form-control" id="detail"></textarea>
                     </div>
                     <div class="col-12">
-                        <label for="inputPrice" class="form-label">Giá niêm yết</label>
-                        <input type="text" class="form-control" id="inputPrice" placeholder="299 triệu VNĐ" required>
+                        <label for="inputPrice" class="form-label">Giá niêm yết <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="inputPrice" placeholder="VD: 299 triệu VNĐ" required>
                     </div>
                     <div class="col-12">
-                        <label for="inputDate" class="form-label">Ngày ra mắt</label>
+                        <label for="inputDate" class="form-label">Ngày ra mắt <span class="text-danger">*</span></label>
                         <input type="date" class="form-control" id="inputDate" placeholder="2024/05/07">
                     </div>
                    <div class="col-12 mt-4">
@@ -86,37 +82,37 @@
                                 <tr>
                                     <td>Dài x Rộng x Cao</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 1800 x 700 x 1050 mm">
+                                        <input id="dimension" type="text" class="form-control" placeholder="VD: 1800 x 700 x 1050 mm">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Chiều dài cơ sở</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 1260 mm">
+                                        <input id="wheelbase" type="text" class="form-control" placeholder="VD: 1260 mm">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Khoảng sáng gầm</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 135 mm">
+                                        <input id="groundClearance" type="number" class="form-control" placeholder="VD: 135 mm">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Trọng lượng không tải</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="curbWeight" type="number" class="form-control" placeholder="VD: 95 kg">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Số chỗ ngồi</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="seat" type="number" class="form-control" placeholder="VD: 4">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Dung tích khoang hành lý</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="trunkVolume" type="number" class="form-control" placeholder="VD: 95 L">
                                     </td>
                                 </tr>
                             </tbody>
@@ -135,25 +131,25 @@
                                 <tr>
                                     <td>Loại động cơ</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="motorType" type="text" class="form-control" placeholder="VD: Điện 2 kW">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Công suất cực đại</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="maxPower" type="number" class="form-control" placeholder="VD: 2 kW">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Chế độ lái</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="driverMode" type="text" class="form-control" placeholder="D: Eco / Sport">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tốc độ tối đa</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="maxSpeed" type="number" class="form-control" placeholder="VD: 90 km/h">
                                     </td>
                                 </tr>
                             </tbody>
@@ -172,25 +168,25 @@
                                 <tr>
                                     <td>Dung lượng pin</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="batteryCapacity" type="number" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Quãng đường di chuyển (NEDC)</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="range" type="number" class="form-control" placeholder="VD: 300 km">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Thời gian sạc thường</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="normalChargeTime" type="number" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Sạc nhanh DC</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="fastChargeSupport" type="text" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                             </tbody>
@@ -210,31 +206,31 @@
                                 <tr>
                                     <td>Màn hình trung tâm</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="centralScreen" type="text" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Hệ điều hành</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="operatingSystem" type="text" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Điều hòa</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="airConditioning" type="text" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Ghế ngồi</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="seats" type="text" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Kết nối</td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                        <input id="connectivity" type="text" class="form-control" placeholder="">
                                     </td>
                                 </tr>
                             </tbody>
@@ -242,7 +238,7 @@
                     </div>
                     
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Thêm xe</button>
+                        <button id="addCar" type="submit" class="btn btn-primary">Thêm xe</button>
                     </div>
                 </form><!-- Vertical Form -->
 

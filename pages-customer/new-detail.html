@@ -1,0 +1,459 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VinFast VF3 - Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .breadcrumb {
+            padding: 15px 5%;
+            color: #555;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #0077cc;
+        }
+
+        .description {
+            padding: 30px 5%;
+            line-height: 1.6;
+        }
+
+        .description h2 {
+            margin-top: 0;
+        }
+
+        .product-tabs-wrapper {
+            width: 90%;
+            /* để chừa lại 5% mỗi bên */
+            margin: 40px auto 0 auto;
+            /* canh giữa */
+            border-top: 3px solid #ccc;
+            /* đường kẻ xám */
+            position: relative;
+        }
+
+        .product-tabs {
+            display: flex;
+            gap: 30px;
+            margin-top: -3px;
+            /* kéo tab đè lên line */
+            padding-left: 0;
+        }
+
+        .product-tabs .tab-link {
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            border-top: 3px solid transparent;
+            position: relative;
+        }
+
+        .product-tabs .tab-link.active {
+            border-top: 3px solid #0089ff;
+            /* gạch xanh */
+            color: #000;
+        }
+
+
+        /* TAB CONTENT ẩn/hiện */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* CONTENT BOX – MỤC LỤC TRONG DESCRIPTION */
+        #description-content {
+            width: 90%;
+            margin: 0 auto;
+            justify-content: space-between;
+            gap: 30px;
+            padding-top: 30px;
+        }
+
+        /* Nội dung bên trái */
+        .description-wrapper {
+            width: calc(100% - 300px);
+            /* chừa chỗ cho mục lục */
+        }
+
+        .description-flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+
+        /* MỤC LỤC – bên phải */
+        .content-box {
+            width: 260px;
+            position: sticky;
+            top: 100px;
+            flex-shrink: 0;
+            background: #f5f5f5;
+            padding: 15px 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+
+        /* Tiêu đề Mục lục */
+        .content-box h3 {
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Danh sách Mục lục – bỏ chấm tròn */
+        .content-box ul {
+            margin: 0;
+            padding-left: 18px;
+            list-style: none;
+            /* bỏ chấm tròn */
+        }
+
+        /* Item trong mục lục */
+        .content-box li {
+            margin-bottom: 6px;
+        }
+
+        /* Link trong mục lục */
+        .content-box a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .content-box a:hover {
+            text-decoration: underline;
+        }
+
+        .description-wrapper h4 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0056e0;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .comment-wrapper {
+            width: 100%;
+            margin-top: 50px;
+            background: #f5f5f5;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .comment-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .comment-note {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .comment-form {
+            background: #fff;
+            padding: 25px;
+            border: 1px solid #ddd;
+        }
+
+        .comment-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        .comment-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .comment-col {
+            flex: 1;
+        }
+
+        .comment-col input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .comment-save {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .comment-submit {
+            background: #1e73be;
+            color: #fff;
+            padding: 10px 22px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .comment-submit:hover {
+            background: #155a96;
+        }
+
+        .desc-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="description-content" class="tab-content active" style="margin-top: 80px;">
+        <div class="description-flex">
+            <div class="description-wrapper">
+                <h1>DỪNG MIỄN THUẾ TRƯỚC BẠ XE ĐIỆN? MUA XE VINFAST NGAY HÔM NAY!</h1>
+
+                <h4>Mua Xe VinFast Ngay Để Tiết Kiệm Thuế Trước Bạ Xe Điện Và Lời Hàng Chục Triệu Đồng!</h4>
+                <p>
+                    Nếu bạn đang tìm kiếm một chiếc xe điện VinFast, thì đây là thời điểm lý tưởng để thực hiện
+                    quyết định của mình. Từ ngày 1/3/2025, chính sách ưu đãi miễn thuế trước bạ xe điện sẽ kết thúc
+                    và bạn phải đóng thuế trước bạ xe điện với mức 50% so với xe động cơ đốt trong.
+                </p>
+                <p>
+                    Điều này có nghĩa là chi phí lăn bánh xe điện VinFast sẽ tăng lên đáng kể sau ngày 28/2/2025.
+                </p>
+                <p>
+                    Vậy, tại sao không tận dụng cơ hội này để tiết kiệm hàng chục triệu đồng bằng việc mua xe điện
+                    VinFast ngay hôm nay? Hãy cùng tìm hiểu chi tiết về chính sách thuế trước bạ và lý do vì sao
+                    bạn không nên bỏ lỡ cơ hội mua xe trong tháng 2!
+                </p>
+                <img class="desc-img" src="../../assets/img/news1.1.png">
+
+
+                <h4 id="sec1">Thuế Trước Bạ Xe Điện: Chính Sách Miễn Thuế Đang Dần Kết Thúc</h4>
+                <p>
+                    Theo Nghị định 10/2022/NĐ-CP của Chính phủ, chính sách miễn thuế trước bạ xe
+                    điện đã được áp dụng từ ngày 1/3/2022, nhằm khuyến khích người dân sử dụng xe
+                    điện và giảm thiếu tác động tiêu cực từ các loại xe động cơ đốt trong. Chính
+                    sách này đã giúp nhiều người tiêu dùng chuyển sang sử dụng xe xanh, bảo vệ môi
+                    trường và tiết kiệm chỉ phí vận hành.
+                </p>
+                <p>
+                    Tuy nhiên, với quy định mới, chính sách miễn thuế trước bạ xe điện sẽ kết thúc
+                    vào ngày 28/2/2025. Kể từ ngày 1/3/2025, xe ô tô điện sẽ không còn được miễn lệ
+                    phí trước bạ mà thay vào đó phải đóng thuế trước bạ với mức 50% so với xe sử dụng
+                    động cơ đốt trong có cùng số chỗ ngồi. Điêu này đồng nghĩa với việc chỉ phí lăn
+                    bánh của xe điện sẽ tăng lên đáng kể. Chính vì vậy, việc sở hữu một chiếc xe điện
+                    VinFast vào thời điểm này sẽ giúp bạn tiết kiệm hàng chục triệu đồng.
+                </p>
+                <img class="desc-img" src="../../assets/img/news1.2.png">
+
+                <h4 id="sec2">Thuế Trước Bạ Xe Điện Sắp Tăng - Bạn Đừng Bỏ Lỡ Cơ Hội Mua Xe VinFast Ngay Hôm Nay!</h4>
+                <p>
+                    Mức đóng thuế trước bạ xe điện mới sẽ ảnh hưởng trực tiếp đến tổng chỉ phí sở hữu xe. Ví dụ, một
+                    chiếc xe VinFast có giá trị niêm yết 1 tỷ đồng, sau ngày 1/3/2025, bạn sẽ phải đóng thêm khoảng
+                    50-60 triệu đồng thuế trước bạ tùy vào địa phương đăng ký. Đây là một khoản chỉ phí không nhỏ mà
+                    bạn có thể tránh được nếu mua xe ngay trong tháng 2 này.
+                </p>
+                <p>
+                    Chẳng hạn, chiếc xe VinFast VF e34 có giá niêm yết khoảng 690 triệu đồng. Nếu bạn mua xe vào
+                    tháng 2/2025, bạn sẽ không phải đóng thuế trước bạ, tiết kiệm được khoảng 35 triệu đồng. Tuy nhiên,
+                    nếu bạn chờ đến 1/3/2025, bạn sẽ phải đóng thêm khoảng 35 triệu đồng thuế trước bạ, làm tăng chỉ
+                    phí sở hữu xe lên đáng kể. Việc mua xe VinFast ngay trong tháng 2 sẽ giúp bạn tiết kiệm một khoản
+                    chỉ phí lớn.
+                </p>
+                <img class="desc-img" src="../../assets/img/news1.3.png">
+
+                <h4 id="sec3">3 Lý Do Quan Trọng Bạn Nên Mua Xe VinFast Ngay Trước Khi Chính Sách Miễn Thuế Trước Bạ Kết
+                    Thúc</h4>
+                <b>1. Tiết Kiệm Hàng Chục Triệu Đồng Khi Không Phải Đóng Thuế Trước Bạ Xe Điện</b>
+                <p>
+                    Đây chính là cơ hội để bạn tiết kiệm một khoản tiền lớn. Chính sách miễn thuế trước bạ 0% đang có
+                    lực và sẽ hết hạn vào cuối tháng 2/2025. Nếu bạn mua xe VinFast trong tháng này, bạn sẽ không
+                    phải đóng thuế trước bạ xe điện, giúp bạn tiết kiệm được hàng chục triệu đồng. Đây chính là thời
+                    điểm lý tưởng để sở hữu một chiếc xe điện VinFast mà không phải lo lắng về chỉ phí thuế trước bạ.
+                </p>
+                <b>2. Xe Điện VinFast - Sự Lựa Chọn Bền Vững Và Tiết Kiệm Dài Hạn Với Thuế Trước Bạ Xe Điện</b>
+                <p>
+                    Việc mua xe điện VinFast không chỉ giúp bạn tiết kiệm thuế trước bạ mà còn giảm thiểu chỉ phí vận
+                    hành dài hạn. Xe điện có chi phí bảo dưỡng thấp hơn so với xe động cơ đốt trong và bạn cũng không
+                    cần lo lắng về việc đổ xăng hay dầu. Đặc biệt, các dòng xe điện của VinFast như VF e34, VF 8 và VF 9
+                    đều được trang bị công nghệ tiên tiến, khả năng vận hành mạnh mẽ và tính năng bảo vệ môi trường.
+                    Chính vì thế, bạn sẽ không chỉ tiết kiệm chỉ phí thuế trước bạ mà còn tiết kiệm nhiều tiền trong
+                    suốt quá trình sử dụng xe.
+                </p>
+                <img class="desc-img" src="../../assets/img/news1.4.png">
+
+                <p><b>3. Bảo Vệ Môi Trường - Mua Xe VinFast Giúp Bạn Góp Phần Làm Xanh Hóa Trái Đất</b></p>
+                <p>
+                    Xe điện là giải pháp hiệu quả để giảm thiểu ô nhiễm không khí, bảo vệ sức khỏe cộng đồng và chống
+                    lại biến đổi khí hậu. VinFast là thương hiệu tiên phong trong việc phát triển xe điện tại Việt Nam,
+                    mang đến những dòng xe không thải ra khí CO2 và sử dụng năng lượng tái tạo, góp phần giảm thiểu tác
+                    động tiêu cực từ các phương tiện giao thông truyền thống. Nếu bạn quan tâm đến việc bảo vệ trái đất,
+                    việc sở hữu một chiếc xe điện VinFast là một quyết định đúng đẳn và có trách nhiệm với tương lai.
+                </p>
+
+                <h4 id="sec4">Thị Trường Ô Tô Điện Sau 1/3/2025 - Đóng Thuế Trước Bạ Xe Điện Và Chi Phí Lăn Bánh Sẽ Tăng
+                    Lên</h4>
+                <p>
+                    Theo dự báo, sau khi chính sách miễn thuế trước bạ kết thúc vào cuối tháng 2/2025, chỉ phí lăn bánh
+                    của xe điện sẽ tăng lên đáng kể. Điều này sẽ ảnh hưởng đến quyết định của nhiều người tiêu dùng khi
+                    lựa chọn xe ô tô. Mặc dù xe điện VinFast vẫn là sự lựa chọn thông minh về lâu dài, nhưng chỉ phí sở
+                    hữu sẽ cao hơn nhiều so với hiện tại nếu bạn không hành động ngay.
+                </p>
+                <p>
+                    Chính sách miễn thuế trước bạ đã giúp thúc đẩy thị trường xe điện trong suốt thời gian qua, và việc
+                    kết thúc ưu đãi này là một phần trong quá trình chuyển đổi thị trường ô tô điện sang phát triển bền
+                    vững
+                    hơn.
+                </p>
+                <img class="desc-img" src="../../assets/img/news1.5.png">
+
+                <h4 id="sec5">Lý Do Bạn Nên Mua Xe VinFast Ngay Bây Giờ Để Tiết Kiệm Thuế Trước Bạ Xe Điện</h4>
+                <ul>
+                    <li>
+                        <strong>MIễn Thuế Trước Bạ 0%:</strong> đây là cơ hội hiếm có để sở hữu một chiếc xe VinFast mà
+                        không phải lo lắng về thuế trước bạ. Mua xe trong tháng 2 sẽ giúp bạn tiết kiệm được hàng chục
+                        triệu đồng.
+                    </li>
+                    <li>
+                        <strong>Chất Lượng Xe Vượt Trội:</strong> VinFast mang đến những mẫu xe điện chất lượng cao với
+                        thiết kế sang trọng và công nghệ tiên tiến. Các dòng xe như VF e34, VF 8 và VF9 đều có khả năng
+                        vận hành mạnh mẽ, tiết kiệm năng lượng và bảo vệ môi trường.
+                    </li>
+                    <li>
+                        <strong>Tiết Kiệm Chi Phí Vận Hành:</strong> Xe điện giúp bạn tiết kiệm chi phí nhiên liệu và
+                        bảo dưỡng. Điều này sẽ giúp bạn tiết kiệm rất nhiều tiền trong suốt quá trình sử dụng xe.
+                    </li>
+                </ul>
+                <img class="desc-img" src="../../assets/img/news1.6.png">
+
+                <h4 id="sec6">Mua Xe VinFast Ngay Hôm Nay - Cơ Hội Không Thể Bỏ Qua!</h4>
+                <p>
+                    Đừng chần chừ thêm nữa! Nếu bạn đang cana nhắc sở hữu một chiếc xe ô tô điện VinFast, tháng 2 này
+                    chính là thời điểm lý tưởng để hành động và tiết kiệm chi phí thuế trước bạ. Sau ngày 1/3/2025, chi
+                    phí sở hữu xe điện sẽ tăng lên, vì vậy, đừng bỏ lỡ cơ hội mua xe với chính sách miễn thuế trước bạ
+                    0% này.
+                </p>
+                <p>
+                    Hãy gọi ngay hotline 08817.66.1717 để được tư vấn và đặt mua xe. Đừng để thời gian trôi qua, hành
+                    động ngay hôm nay để sở hữu chiếc xe điện VinFast, tiết kiệm chi phí và đón đầu tương lai xanh!
+                </p>
+
+                <!-- REVIEW FORM -->
+                <div class="comment-wrapper">
+                    <h3 class="comment-title">Để lại một bình luận</h3>
+                    <p class="comment-note">
+                        Email của bạn sẽ không được hiển thị công khai.
+                        Các trường bắt buộc được đánh dấu *
+                    </p>
+
+                    <form class="comment-form">
+                        <label>Bình luận *</label>
+                        <textarea rows="6"></textarea>
+
+                        <div class="comment-row">
+                            <div class="comment-col">
+                                <label>Tên *</label>
+                                <input type="text">
+                            </div>
+                            <div class="comment-col">
+                                <label>Email *</label>
+                                <input type="email">
+                            </div>
+                            <div class="comment-col">
+                                <label>Trang web</label>
+                                <input type="text">
+                            </div>
+                        </div>
+
+                        <div class="comment-save">
+                            <input type="checkbox">
+                            Lưu tên của tôi, email, và trang web trong trình duyệt này cho lần bình luận kế tiếp của
+                            tôi.
+                        </div>
+
+                        <button type="submit" class="comment-submit">
+                            GỬI BÌNH LUẬN
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Mục lục ở bên phải -->
+            <div class="content-box">
+                <h3>Mục lục</h3>
+                <ul>
+                    <li><a href="#sec1">1. Thuế Trước Bạ Xe Điện: Chính Sách Miễn Thuế Đang Dần Kết Thúc</a></li>
+                    <li><a href="#sec2">2. Thuế Trước Bạ Xe Điện Sắp Tăng - Bạn Đừng Bỏ Lỡ Cơ Hội Mua Xe VinFast Ngay
+                            Hôm Nay!</a></li>
+                    <li><a href="#sec3">3. 3 Lý Do Quan Trọng Bạn Nên Mua Xe VinFast Ngay Trước Khi Chính Sách Miễn Thuế
+                            Trước Bạ Kết
+                            Thúc</a></li>
+                    <li><a href="#sec4">4. Thị Trường Ô Tô Điện Sau 1/3/2025 - Đóng Thuế Trước Bạ Xe Điện Và Chi Phí Lăn
+                            Bánh Sẽ Tăng Lên</a></li>
+                    <li><a href="#sec5">5. Lý Do Bạn Nên Mua Xe VinFast Ngay Bây Giờ Để Tiết Kiệm Thuế Trước Bạ Xe
+                            Điện</a></li>
+                    <li><a href="#sec6">6. Mua Xe VinFast Ngay Hôm Nay - Cơ Hội Không Thể Bỏ Qua!</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cuộn mượt khi click mục lục
+        document.querySelectorAll('.content-box a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const id = this.getAttribute('href');
+                const target = document.querySelector(id);
+                window.scrollTo({
+                    top: target.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
