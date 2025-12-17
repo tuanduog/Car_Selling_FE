@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main – Xe máy điện</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .car-image {
+        max-width: 80%;
+        }
+
+        .toggle-box {
+        display: flex;
+        background: #f1f3f5;
+        border-radius: 30px;
+        padding: 4px;
+        }
+
+        .toggle-box button {
+        border: none;
+        background: transparent;
+        padding: 8px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        color: #6c757d;
+        }
+
+        .toggle-box button.active {
+        background: #0d6efd;
+        color: #fff;
+        }
+
+        .color-box {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid #dee2e6;
+        }
+
+        .color-box.active {
+        border: 3px solid #0d6efd;
+        }
+
+        /* Panel */
+.config-panel {
+    background: #fff;
+}
+
+/* Step */
+.step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Color picker */
+.color-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.color-box:hover {
+    transform: scale(1.1);
+}
+
+.color-box.active {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* Price */
+.price-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    </style>
+</head>
+<body>
+    <main id="main" class="main">
+    <div class="container-fluid mt-4">
+        <div class="row">
+
+        <!-- ===== LEFT: Xe + thông tin ===== -->
+        <div class="col-lg-8 px-5">
+
+        <!-- Tabs dòng xe -->
+        <div class="d-flex gap-5 mb-4 border-bottom">
+            <div class="fw-semibold text-primary border-bottom border-3 pb-2">
+                Thông tin xe
+            </div>
+        </div>
+
+        <!-- Hình xe -->
+        <div class="text-center mb-4">
+            <img src="assets/img/vf5-white.png" class="img-fluid car-image">
+        </div>
+
+        <!-- Thông số -->
+        <div class="row text-center mb-4">
+            <div class="col">
+            <div class="fw-bold fs-4">134 hp/100 kW</div>
+            <div class="text-muted small">Công suất tối đa</div>
+            </div>
+            <div class="col">
+            <div class="fw-bold fs-4">326,4 km (NEDC)</div>
+            <div class="text-muted small">Quãng đường di chuyển</div>
+            </div>
+            <div class="col">
+            <div class="fw-bold fs-4">2.514 mm</div>
+            <div class="text-muted small">Chiều dài cơ sở</div>
+            </div>
+        </div>
+
+        <!-- Switch Ngoại / Nội thất -->
+        <div class="d-flex justify-content-center">
+            <div class="toggle-box">
+            <button class="active">Ngoại thất</button>
+            <button>Nội thất</button>
+            </div>
+        </div>
+
+        <p class="text-center text-muted small mt-3">
+            Các thông tin sản phẩm có thể thay đổi mà không cần báo trước
+        </p>
+
+        </div>
+
+        <!-- ===== RIGHT: Cấu hình ===== -->
+<div class="col-lg-4 border-start px-4 py-3 config-panel">
+
+    <!-- Step -->
+    <div class="d-flex align-items-center mb-3 step-nav">
+        <div class="step-item active" data-step="1" style="cursor: pointer;">
+            <span class="step-circle bg-primary text-white">1</span>
+            <span class="fw-semibold ms-2 text-primary">Lựa chọn xe</span>
+        </div>
+
+        <div class="step-item ms-3 text-muted" data-step="2" style="cursor: pointer;">
+            <span class="step-circle bg-light text-dark">2</span>
+            <span class="ms-2">Nhập thông tin</span>
+        </div>
+
+        <div class="step-item ms-3 text-muted" data-step="3" style="cursor: pointer;">
+            <span class="step-circle bg-light text-dark">3</span>
+            <span class="ms-2">Thanh toán</span>
+        </div>
+    </div>
+
+    <div id="step-1">
+        <p class="text-muted small">
+        Xin mời Quý khách vui lòng chọn phiên bản, nội thất và ngoại thất xe.
+    </p>
+
+    <!-- ===== Ngoại thất ===== -->
+    <h5 class="mt-4">Ngoại thất</h5>
+
+    <p class="fw-semibold mb-2">Màu cơ bản <span class="text-muted fw-normal">– Theo xe</span></p>
+    <div class="d-flex gap-3 mb-3">
+        <div class="color-box active" style="background:#ffffff"></div>
+        <div class="color-box" style="background:#c4161c"></div>
+        <div class="color-box" style="background:#999999"></div>
+    </div>
+
+    <p class="fw-semibold mb-2">
+        Màu nâng cao <span class="text-primary fw-normal">Miễn phí</span>
+    </p>
+    <div class="d-flex gap-3 mb-4">
+        <div class="color-box" style="background:#f4c430"></div>
+        <div class="color-box" style="background:#2aa7c9"></div>
+        <div class="color-box" style="background:#5f6f52"></div>
+    </div>
+
+    <!-- ===== Nội thất ===== -->
+    <h5>Nội thất</h5>
+    <div class="d-flex gap-3 mb-4">
+        <div class="color-box active" style="background:#1f1f1f"></div>
+    </div>
+
+    <hr>
+
+    <!-- ===== Trả góp ===== -->
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="fw-semibold mb-0">Dự toán trả góp</h6>
+        <a href="#" class="text-primary text-decoration-none">Chi tiết</a>
+    </div>
+
+    <!-- ===== Giá ===== -->
+    <div class="price-box mb-4 mt-2">
+        <div>
+            <h6 class="mb-1">Giá xe kèm pin</h6>
+            <small class="text-muted">Đã bao gồm VAT</small>
+        </div>
+        <div class="fw-bold fs-5 text-primary">
+            454.545.000 VNĐ
+        </div>
+    </div>
+
+    <!-- Button -->
+    <button type="button" class="btn btn-primary w-100 py-2 fw-semibold" id="to-step-2">
+        Tiếp theo
+    </button>
+
+    </div>
+
+    <div id="step-2" class="d-none">
+
+    <h5 class="mt-4">Thông tin khách hàng</h5>
+
+    <div class="mb-3">
+        <label class="form-label">Họ và tên</label>
+        <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Số điện thoại</label>
+        <input type="text" class="form-control" placeholder="090xxxxxxx">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" placeholder="example@email.com">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Địa chỉ nhận xe</label>
+        <textarea class="form-control" rows="2"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary w-100 py-2 fw-semibold" id="to-step-3">
+        Tiếp theo
+    </button>
+</div>
+
+<div id="step-3" class="d-none">
+
+    <h5 class="mt-4">Phương thức thanh toán</h5>
+
+    <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="payment" checked>
+        <label class="form-check-label">
+            Thanh toán toàn bộ
+        </label>
+    </div>
+
+    <div class="form-check mb-4">
+        <input class="form-check-input" type="radio" name="payment">
+        <label class="form-check-label">
+            Trả góp ngân hàng
+        </label>
+    </div>
+
+    <div class="price-box mb-4">
+        <div>
+            <h6 class="mb-1">Tổng tiền</h6>
+            <small class="text-muted">Đã bao gồm VAT</small>
+        </div>
+        <div class="fw-bold fs-5 text-primary">
+            454.545.000 VNĐ
+        </div>
+    </div>
+
+    <button class="btn btn-success w-100 py-2 fw-semibold">
+        Xác nhận & Thanh toán
+    </button>
+</div>
+</div>
+
+    </div>
+    </div>
+</main>
+</body>

@@ -1,0 +1,252 @@
+<body>
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Chỉnh sửa thông tin</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Chỉnh sửa thông tin</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Thông tin xe</h5>
+
+                <!-- Vertical Form -->
+                <form class="row g-3">
+                    <div class="col-12">
+                        <label for="inputCarName" class="form-label">Loại xe</label>
+                        <select id="inputCarName" class="form-select" required>
+                            <option selected disabled>Chọn xe...</option>
+                            <option>VinFast VF 3</option>
+                            <option>VinFast VF 5</option>
+                            <option>VinFast VF 6</option>
+                            <option>VinFast VF 7</option>
+                            <option>VinFast VF 8</option>
+                            <option>VinFast VF 9</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label d-block">Phiên bản</label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" 
+                                type="radio" 
+                                name="version" 
+                                id="versionEco" 
+                                value="eco" 
+                                checked>
+                            <label class="form-check-label" for="versionEco">
+                                Eco
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" 
+                                type="radio" 
+                                name="version" 
+                                id="versionPlus" 
+                                value="plus">
+                            <label class="form-check-label" for="versionPlus">
+                                Plus
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputImage" class="form-label">Thêm hình ảnh</label>
+                        <input type="file" class="form-control" id="inputImage">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputImage" class="form-label">Mô tả</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputImage" class="form-label">Thông tin chung</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputPrice" class="form-label">Giá niêm yết</label>
+                        <input type="text" class="form-control" id="inputPrice" placeholder="299 triệu VNĐ" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputDate" class="form-label">Ngày ra mắt</label>
+                        <input type="date" class="form-control" id="inputDate" placeholder="2024/05/07">
+                    </div>
+                   <div class="col-12 mt-4">
+                        <label for="inputDate" class="form-label">Kích thước & trọng lượng</label>
+                        <table class="table table-sm table-bordered mt-2 align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 50%">Thông số</th>
+                                    <th>Giá trị</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dài x Rộng x Cao</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 1800 x 700 x 1050 mm">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Chiều dài cơ sở</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 1260 mm">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Khoảng sáng gầm</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 135 mm">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Trọng lượng không tải</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số chỗ ngồi</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dung tích khoang hành lý</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputDate" class="form-label">Động cơ & vận hành</label>
+                        <table class="table table-sm table-bordered mt-2 align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 50%">Thông số</th>
+                                    <th>Giá trị</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Loại động cơ</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Công suất cực đại</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Chế độ lái</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tốc độ tối đa</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputDate" class="form-label">Pin & khả năng di chuyển</label>
+                        <table class="table table-sm table-bordered mt-2 align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 50%">Thông số</th>
+                                    <th>Giá trị</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dung lượng pin</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Quãng đường di chuyển (NEDC)</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thời gian sạc thường</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sạc nhanh DC</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="inputDate" class="form-label">Thiết kế nội thất</label>
+                        <table class="table table-sm table-bordered mt-2 align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 50%">Thông số</th>
+                                    <th>Giá trị</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Màn hình trung tâm</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Hệ điều hành</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Điều hòa</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ghế ngồi</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kết nối</td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="VD: 95 kg">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </div>
+                </form><!-- Vertical Form -->
+
+            </div>
+        </div>
+    </main><!-- End #main -->
+</body>

@@ -170,6 +170,11 @@
     .menu-bar li:hover {
         color: #0d6efd;
     }
+
+    .menu-bar .top-menu.active {
+        color: #0d6efd;
+    }
+
     
   </style>
 </head>
@@ -180,18 +185,18 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="customer.html" class="logo d-flex align-items-center">
+      <a href="customer.html" class="logo d-flex align-items-center text-decoration-none" style="width: fit-content;">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">NiceCar</span>
       </a>
     </div><!-- End Logo -->
 
     <div class="menu-bar">
-    <ul class="d-flex gap-4 mb-0">
-        <li><a onclick="loadPage('pages-customer/home.html')">TRANG CHỦ</a></li>
-        <li><a onclick="loadPage('pages-customer/product.html')">SẢN PHẨM</a></li>
-        <li><a onclick="loadPage('pages-customer/accessory.html')">PHỤ KIỆN</a></li>
-    </ul>
+      <ul class="d-flex gap-4 mb-0">
+          <li><a onclick="loadPage('pages-customer/home.html')">TRANG CHỦ</a></li>
+          <li><a onclick="loadPage('pages-customer/product.html')">SẢN PHẨM</a></li>
+          <li><a onclick="loadPage('pages-customer/accessory.html')">PHỤ KIỆN</a></li>
+      </ul>
     </div>
     <!-- End Menu Bar -->
 

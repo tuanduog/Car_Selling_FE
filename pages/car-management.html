@@ -20,7 +20,7 @@
                         <!-- Header: tiêu đề + nút thêm -->
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="card-title mb-0">Danh sách xe</h5>
-                            <button class="btn btn-primary btn-sm" onclick="loadPage('section/car/add.html')">
+                            <button class="btn btn-primary btn-sm" onclick="loadPage('section/car/add-car.html')">
                                 <i class="bi bi-plus"></i> Thêm xe
                             </button>
                         </div>
@@ -70,10 +70,9 @@
                         <table class="table table-striped table-hover datatable align-middle">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Tên phiên bản</th>
+                                    <th>Loại xe</th>
+                                    <th>Phiên bản</th>
                                     <th>Giá niêm yết</th>
-                                    <th>Lăn bánh tại Hà Nội</th>
-                                    <th>Lăn bánh tại tỉnh khác</th>
                                     <th data-type="date" data-format="YYYY/DD/MM">Ngày ra mắt</th>
                                     <th class="text-center">Hành động</th>
                                 </tr>
@@ -83,120 +82,7 @@
                                     <td>VinFast VF 3</td>
                                     <td>299 triệu VNĐ</td>
                                     <td>321.337.000 VNĐ</td>
-                                    <td>302.337.000 VNĐ</td>
                                     <td>2024/05/07</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast VF 5 Plus</td>
-                                    <td>529 triệu VNĐ</td>
-                                    <td>551.337.000 VNĐ</td>
-                                    <td>532.337.000 VNĐ</td>
-                                    <td>2022/12/10</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast VF 6 Eco</td>
-                                    <td>689 triệu VNĐ</td>
-                                    <td>711.337.000 VNĐ</td>
-                                    <td>692.337.000 VNĐ</td>
-                                    <td>2023/10/20</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast VF 7 Eco</td>
-                                    <td>799 triệu VNĐ</td>
-                                    <td>821.337.000 VNĐ</td>
-                                    <td>802.337.000 VNĐ</td>
-                                    <td>2023/12/02</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast VF 8 Eco</td>
-                                    <td>1 tỷ 019 triệu VNĐ</td>
-                                    <td>1.041.337.000 VNĐ</td>
-                                    <td>1.022.337.000 VNĐ</td>
-                                    <td>2022/09/10</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast VF 9 Eco</td>
-                                    <td>1 tỷ 499 triệu VNĐ</td>
-                                    <td>1.521.694.000 VNĐ</td>
-                                    <td>1.502.694.000 VNĐ</td>
-                                    <td>2025/03/27</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast Limo Green</td>
-                                    <td>749 triệu VNĐ</td>
-                                    <td>771.694.000 VNĐ</td>
-                                    <td>752.694.000 VNĐ</td>
-                                    <td>2025/03/17</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
-                                            onclick="loadPage('section/car/edit.html')">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" title="Xóa">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>VinFast ECVan</td>
-                                    <td>285 triệu VNĐ</td>
-                                    <td>307.380.700 VNĐ</td>
-                                    <td>275.405.000 VNĐ</td>
-                                    <td>2025/05/25</td>
                                     <td class="text-center">
                                         <button class="btn btn-outline-primary btn-sm me-2" title="Chỉnh sửa"
                                             onclick="loadPage('section/car/edit.html')">

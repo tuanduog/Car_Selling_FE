@@ -8,6 +8,8 @@ window.loadPage = async function(url) {
    
     fillUserInfo();
 
+    initStepConfig();
+
     if(url.includes("profile")) {
         const module = await import('./js/profile.js');
         module.initProfilePage();
@@ -113,6 +115,74 @@ function setActiveMenu(page) {
             l.classList.remove('collapsed');
         }
     });
+}
+
+
+function initStepConfig() {
+
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const stepItems = document.querySelectorAll('.step-item');
+
+    if (!step1 || !step2 || !step3) {
+        console.warn("Step DOM chưa sẵn sàng");
+        return;
+    }
+
+    let currentStep = 1;
+
+    function renderStep(step) {
+        stepItems.forEach(item => {
+            const circle = item.querySelector('.step-circle');
+            const label = item.querySelector('span.ms-2');
+
+            item.classList.add('text-muted');
+            circle.className = 'step-circle bg-light text-dark';
+            label.classList.remove('text-primary', 'fw-semibold');
+        });
+
+        const active = document.querySelector(`.step-item[data-step="${step}"]`);
+        active.classList.remove('text-muted');
+        active.querySelector('.step-circle').className = 'step-circle bg-primary text-white';
+        active.querySelector('span.ms-2').classList.add('text-primary', 'fw-semibold');
+
+        step1.classList.add('d-none');
+        step2.classList.add('d-none');
+        step3.classList.add('d-none');
+
+        document.getElementById(`step-${step}`).classList.remove('d-none');
+    }
+
+    function setActiveStep(step) {
+        if (step > currentStep) return;
+        currentStep = step;
+        renderStep(step);
+    }
+
+    function nextStep(step) {
+        if (step > 3) return;
+        currentStep = step;
+        renderStep(step);
+    }
+
+    // ===== Button next =====
+    document.getElementById('to-step-2')
+        ?.addEventListener('click', () => nextStep(2));
+
+    document.getElementById('to-step-3')
+        ?.addEventListener('click', () => nextStep(3));
+
+    // ===== Click step header (chỉ cho lùi) =====
+    stepItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const step = Number(item.dataset.step);
+            setActiveStep(step);
+        });
+    });
+
+    // init
+    renderStep(1);
 }
 
 function showToast(message, type = "success"){
