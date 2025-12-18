@@ -27,6 +27,13 @@ window.loadPage = async function(url) {
         }, 0);
     }
 
+    if(url.includes("car-management")){
+        const module = await import('./js/car.js');
+        setTimeout(() => {
+            module.loadCarManagement();
+        }, 0);
+    }
+
     if(url.includes("add-leader")){
         const module = await import('./js/add-leader.js');
         requestAnimationFrame(() => {
