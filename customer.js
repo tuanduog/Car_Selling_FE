@@ -5,6 +5,20 @@ window.loadPage = async function(url) {
     const res = await fetch(url);
     const html = await res.text();
     document.getElementById('mainContent').innerHTML = html;
+
+    if(url.includes("product")){
+        const module = await import('./js-customer/car-customer.js');
+        setTimeout(() => {
+            module.renderVehicles();
+        }, 0);
+    }
+
+    if(url.includes("car-detail")){
+        const module = await import('./js-customer/car-detail.js');
+        setTimeout(() => {
+            module.renderCarDetail();
+        }, 0);
+    }
    
     fillUserInfo();
 

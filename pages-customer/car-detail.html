@@ -698,8 +698,8 @@
 
         <!-- RIGHT: PRODUCT INFO -->
         <div class="right">
-            <h1 class="title">VINFAST VF3</h1>
-            <h1 class="price">299.000.000 VNĐ</h1>
+            <h1 class="title" id="carName"></h1>
+            <h1 class="price" id="carPrice"></h1>
             <ul class="promo">
                 <h2>ƯU ĐÃI VINFAST MỚI NHẤT</h2>
                 <li><b>Giảm ngay 4% giá xe </b> cho khách hàng mua mới</li>
@@ -731,19 +731,15 @@
     <div id="description-content" class="tab-content active">
         <div class="description-flex">
             <div class="description-wrapper">
-                <h2>VINFAST VF3 - XE ĐIỆN MINI QUỐC DÂN GIÁ CHỈ 299 TRIỆU | ĐẦY ĐỦ THÔNG SỐ, ƯU ĐÃI, HỖ TRỢ LÁI THỬ</h2>
+                <h2><span id="carName1"></span> - <span id="carDescription"></span></h2>
 
                 <h4 id="sec1">1. GIỚI THIỆU CHUNG</h4>
-                <p>
-                    VinFast VF3 là mẫu xe điện mini thuần Việt, thiết kế trẻ trung, nhỏ gọn,
-                    phù hợp đi phố và đặc biệt tiết kiệm chi phí. Dòng xe này hướng đến
-                    đối tượng học sinh, sinh viên, nhân viên văn phòng và người giao hàng.
-                </p>
-                <img class="desc-img" src="../../assets/img/VF3-red.png">
+                <p id="carDetail"></p>
+                <img class="desc-img" id="carImage" style="width: auto; height: 400px;">
 
-                <h4 id="sec2">2. GIÁ BÁN VINFAST VF3 MỚI NHẤT</h4>
+                <h4 id="sec2">2. GIÁ BÁN <span id="carName2" style="text-transform: uppercase;"></span> MỚI NHẤT</h4>
                 <p>
-                    Giá xe niêm yết: <b>299.000.000 VNĐ</b>. Đã bao gồm VAT nhưng không bao gồm các
+                    Giá xe niêm yết: <b id="carPrice1"></b>. Đã bao gồm VAT nhưng không bao gồm các
                     khuyến mãi tùy thời điểm.
                 </p>
 
@@ -758,90 +754,92 @@
                     <tbody>
                         <tr>
                             <td>Dài × Rộng × Cao (mm)</td>
-                            <td>3.190 × 1.679 × 1.622</td>
+                            <td id="size-dimensions"></td>
                         </tr>
                         <tr>
                             <td>Chiều dài cơ sở (mm)</td>
-                            <td>2.075</td>
+                            <td id="size-wheelbase"></td>
                         </tr>
                         <tr>
                             <td>Khoảng sáng gầm xe (mm)</td>
-                            <td>191</td>
+                            <td id="size-clearance"></td>
                         </tr>
                         <tr>
-                            <td>Trọng lượng không tải</td>
-                            <td>1.180 kg</td>
+                            <td>Trọng lượng không tải (kg)</td>
+                            <td id="size-weight"></td>
                         </tr>
                         <tr>
                             <td>Số chỗ ngồi</td>
-                            <td>4 chỗ</td>
+                            <td id="size-seat"></td>
                         </tr>
                         <tr>
                             <td>Dung tích khoang hành lý</td>
-                            <td>~285L</td>
+                            <td id="size-trunk"></td>
                         </tr>
                     </tbody>
                 </table>
+
 
                 <h4 id="sec4">4. ĐỘNG CƠ & VẬN HÀNH</h4>
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th>HẠNG MỤC</th>
                             <th>THÔNG SỐ</th>
+                            <th>GIÁ TRỊ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Loại động cơ</td>
-                            <td>1 motor điện - cầu sau (RWD)</td>
+                            <td id="engine-type"></td>
                         </tr>
                         <tr>
                             <td>Công suất cực đại</td>
-                            <td>32 kW (~43 mã lực)</td>
+                            <td id="engine-power"></td>
                         </tr>
                         <tr>
                             <td>Chế độ lái</td>
-                            <td>Eco/Normal</td>
+                            <td id="engine-drive-mode"></td>
                         </tr>
                         <tr>
                             <td>Tốc độ tối đa</td>
-                            <td>Eco/Normal</td>
+                            <td id="engine-max-speed"></td>
                         </tr>
                     </tbody>
                 </table>
+
 
                 <h4 id="sec5">5. PIN & KHẢ NĂNG DI CHUYỂN</h4>
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th>HẠNG MỤC</th>
                             <th>THÔNG SỐ</th>
+                            <th>GIÁ TRỊ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Dung lượng pin</td>
-                            <td>18.64 kWh</td>
+                            <td id="battery-capacity"></td>
                         </tr>
                         <tr>
                             <td>Quãng đường di chuyển (NEDC)</td>
-                            <td>~210 km</td>
+                            <td id="battery-range"></td>
                         </tr>
                         <tr>
                             <td>Thời gian sạc thường</td>
-                            <td>Khoảng 5 giờ</td>
+                            <td id="battery-normal-charge"></td>
                         </tr>
                         <tr>
                             <td>Sạc nhanh DC</td>
-                            <td>Không hỗ trợ</td>
+                            <td id="battery-fast-charge"></td>
                         </tr>
                     </tbody>
                 </table>
 
                 <h4 id="sec6">6. THIẾT KẾ NGOẠI THẤT</h4>
                 <p>
-                    VinFast VF3 sở hữu thiết kế vuông vức, cá tính, lấy cảm hứng từ các mẫu SUV mini.
+                    <span id="carName4"></span> sở hữu thiết kế vuông vức, cá tính, lấy cảm hứng từ các mẫu SUV mini.
                     Kích thước nhỏ gọn giúp xe linh hoạt trong đô thị, dễ đỗ xe và tiết kiệm không gian.
                 </p>
 
@@ -856,30 +854,30 @@
                 <table class="spec-table">
                     <thead>
                         <tr>
-                            <th>HẠNG MỤC</th>
                             <th>THÔNG SỐ</th>
+                            <th>GIÁ TRỊ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Màn hình trung tâm</td>
-                            <td>10 inch</td>
+                            <td id="interior-screen"></td>
                         </tr>
                         <tr>
                             <td>Hệ điều hành</td>
-                            <td>VinFast OS</td>
+                            <td id="interior-os"></td>
                         </tr>
                         <tr>
                             <td>Điều hòa</td>
-                            <td>Chỉnh tay</td>
+                            <td id="interior-ac"></td>
                         </tr>
                         <tr>
                             <td>Ghế ngồi</td>
-                            <td>Nỉ, chỉnh cơ</td>
+                            <td id="interior-seat"></td>
                         </tr>
                         <tr>
                             <td>Kết nối</td>
-                            <td>Bluetooth, USB</td>
+                            <td id="interior-connect"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -891,7 +889,7 @@
                 <h3>Mục lục</h3>
                 <ul>
                     <li><a href="#sec1">1. Giới thiệu chung</a></li>
-                    <li><a href="#sec2">2. Giá bán VinFast VF3 mới nhất</a></li>
+                    <li><a href="#sec2">2. Giá bán <span id="carName3"></span> mới nhất</a></li>
                     <li><a href="#sec3">3. Kích thước & trọng lượng</a></li>
                     <li><a href="#sec4">4. Động cơ & vận hành</a></li>
                     <li><a href="#sec5">5. Pin & khả năng di chuyển</a></li>
