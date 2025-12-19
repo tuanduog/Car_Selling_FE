@@ -19,6 +19,13 @@ window.loadPage = async function(url) {
             module.renderCarDetail();
         }, 0);
     }
+
+    if(url.includes("deposit")){
+        const module = await import('./js-customer/car-payment.js');
+        setTimeout(() => {
+            module.renderDetail();
+        }, 0);
+    }
    
     fillUserInfo();
 

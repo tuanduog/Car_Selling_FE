@@ -32,6 +32,22 @@
         color: #fff;
         }
 
+        .price-option {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .price-option.active {
+            border-color: #0d6efd;
+            background: #f0f6ff;
+        }
+
         .color-box {
         width: 44px;
         height: 44px;
@@ -79,12 +95,60 @@
     box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
 }
 
+.loan-group button {
+            border: 1px solid #ddd;
+            background: #fff;
+            transition: all .2s ease;
+        }
+
+        .loan-group button:hover {
+            border-color: #0d6efd;
+            background: #f0f6ff;
+            color: #0d6efd;
+        }
+
+        .loan-group button.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+
 /* Price */
 .price-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+.percent-group button {
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 8px 0;
+            border-radius: 6px;
+        }
+
+        .percent-group button.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+        .percent-group button {
+            border: 1px solid #ddd;
+            background: #fff;
+            transition: all .2s ease;
+        }
+
+        .percent-group button:hover {
+            border-color: #0d6efd;
+            background: #f0f6ff;
+            color: #0d6efd;
+        }
+
+        .percent-group button.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
 
     </style>
 </head>
@@ -105,21 +169,21 @@
 
         <!-- Hình xe -->
         <div class="text-center mb-4">
-            <img src="assets/img/vf5-white.png" class="img-fluid car-image">
+            <img class="img-fluid car-image" id="carImage" style="max-width: 600px;">
         </div>
 
         <!-- Thông số -->
         <div class="row text-center mb-4">
             <div class="col">
-            <div class="fw-bold fs-4">134 hp/100 kW</div>
+            <div class="fw-bold fs-4" id="maxPower"></div>
             <div class="text-muted small">Công suất tối đa</div>
             </div>
             <div class="col">
-            <div class="fw-bold fs-4">326,4 km (NEDC)</div>
+            <div class="fw-bold fs-4" id="batteryRange"></div>
             <div class="text-muted small">Quãng đường di chuyển</div>
             </div>
             <div class="col">
-            <div class="fw-bold fs-4">2.514 mm</div>
+            <div class="fw-bold fs-4" id="wheelBase"></div>
             <div class="text-muted small">Chiều dài cơ sở</div>
             </div>
         </div>
@@ -171,7 +235,7 @@
     <div class="d-flex gap-3 mb-3">
         <div class="color-box active" style="background:#ffffff"></div>
         <div class="color-box" style="background:#c4161c"></div>
-        <div class="color-box" style="background:#999999"></div>
+        <div class="color-box" style="background:#0e0e0e"></div>
     </div>
 
     <p class="fw-semibold mb-2">
@@ -190,12 +254,6 @@
     </div>
 
     <hr>
-
-    <!-- ===== Trả góp ===== -->
-    <div class="d-flex justify-content-between align-items-center mb-2">
-        <h6 class="fw-semibold mb-0">Dự toán trả góp</h6>
-        <a href="#" class="text-primary text-decoration-none">Chi tiết</a>
-    </div>
 
     <!-- ===== Giá ===== -->
     <div class="price-box mb-4 mt-2">
@@ -235,8 +293,21 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Địa chỉ nhận xe</label>
-        <textarea class="form-control" rows="2"></textarea>
+        <label class="form-label">Căn cước công dân</label>
+        <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Showroom nhận xe</label>
+        
+        <select id="provinceSelect" class="form-select mb-3">
+            <option value="">-- Chọn Tỉnh / Thành phố --</option>
+        </select>
+
+        <!-- Showroom -->
+        <select id="showroomSelect" class="form-select" disabled>
+            <option value="">-- Chọn Showroom --</option>
+        </select>
     </div>
 
     <button type="button" class="btn btn-primary w-100 py-2 fw-semibold" id="to-step-3">
@@ -262,6 +333,75 @@
         </label>
     </div>
 
+    <div>
+        <label class="form-label">Thông tin trả góp</label>
+
+        <div class="price-option active">
+            <div>
+                Giá xe niêm yết
+            </div>
+            <strong>299.000.000 VNĐ</strong>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Thời gian vay (năm)</label>
+        <div class="row g-2 loan-group">
+            <div class="col"><button class="w-100">1</button></div>
+            <div class="col"><button class="w-100">2</button></div>
+            <div class="col"><button class="w-100">3</button></div>
+            <div class="col"><button class="w-100">4</button></div>
+            <div class="col"><button class="w-100">5</button></div>
+            <div class="col"><button class="w-100">6</button></div>
+            <div class="col"><button class="w-100">7</button></div>
+            <div class="col"><button class="w-100">8</button></div>
+        </div>
+
+    </div>
+
+    <!-- DOWN PAYMENT -->
+    <div class="mb-3">
+        <label class="form-label">Số tiền trả trước</label>
+        <div class="row g-2 percent-group">
+            <div class="col"><button class="w-100">20%</button></div>
+            <div class="col"><button class="w-100">30%</button></div>
+            <div class="col"><button class="w-100">40%</button></div>
+            <div class="col"><button class="w-100">50%</button></div>
+            <div class="col"><button class="w-100">60%</button></div>
+            <div class="col"><button class="w-100">70%</button></div>
+            <div class="col"><button class="w-100">80%</button></div>
+            <div class="col"><button class="w-100">90%</button></div>
+        </div>
+    </div>
+
+    <!-- BANK -->
+    <div class="mb-3">
+        <label class="form-label">Ngân hàng</label>
+        <select class="form-select">
+            <option>Chọn ngân hàng</option>
+            <option>VPBank</option>
+            <option>TPBank</option>
+            <option>Vietcombank</option>
+        </select>
+    </div>
+
+    <div class="price-box mb-2 d-flex justify-content-between align-items-center">
+        <div>
+            <h6 class="mb-1 fw-semibold">Ước tính trả góp hàng tháng</h6>
+        </div>
+        <div class="fw-bold fs-5 text-primary text-end">
+            5.200.000 VNĐ<br>
+            <small class="text-muted fs-6">/ tháng</small>
+        </div>
+    </div>
+
+<div class="text-start mb-3">
+    <a href="javascript:void(0)" class="text-primary fw-semibold text-decoration-none">
+        📊 Xem lịch trả góp chi tiết
+    </a>
+</div>
+
+
     <div class="price-box mb-4">
         <div>
             <h6 class="mb-1">Tổng tiền</h6>
@@ -273,7 +413,7 @@
     </div>
 
     <button class="btn btn-success w-100 py-2 fw-semibold">
-        Xác nhận & Thanh toán
+        Xác nhận
     </button>
 </div>
 </div>

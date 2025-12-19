@@ -672,43 +672,33 @@
         <!-- LEFT: PRODUCT IMAGES -->
         <div class="left">
 
-            <!-- NÚT PREV -->
-            <button class="carousel-control-prev custom-prev" onclick="prevImage()">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-
-            <!-- ẢNH CHÍNH -->
-            <img id="main-img" class="main-img" src="../../assets/img/VF3-red.png" alt="VF3">
-
-            <!-- NÚT NEXT -->
-            <button class="carousel-control-next custom-next" onclick="nextImage()">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-
-            <div class="thumb-list">
-                <img onclick="changeImage(this)" src="../../assets/img/VF3-red.png" class="thumb active">
-                <img onclick="changeImage(this)" src="../../assets/img/VF3-green.png" class="thumb">
-                <img onclick="changeImage(this)" src="../../assets/img/VF3-grey.png" class="thumb">
-                <img onclick="changeImage(this)" src="../../assets/img/VF3-blue.png" class="thumb">
-                <img onclick="changeImage(this)" src="../../assets/img/VF3-yellow.png" class="thumb">
-                <img onclick="changeImage(this)" src="../../assets/img/VF3-pink.png" class="thumb">
-            </div>
+            <img id="main-img" class="main-img pt-5" style="max-width: 680px;">
 
         </div>
 
         <!-- RIGHT: PRODUCT INFO -->
         <div class="right">
-            <h1 class="title" id="carName"></h1>
-            <h1 class="price" id="carPrice"></h1>
-            <ul class="promo">
-                <h2>ƯU ĐÃI VINFAST MỚI NHẤT</h2>
-                <li><b>Giảm ngay 4% giá xe </b> cho khách hàng mua mới</li>
-                <li><b>Tặng 2 năm bảo hiểm thân vỏ</b> hoặc <b>quy đổi 6,5 triệu đồng tiền mặt</b></li>
-                <li><b>Hỗ trợ vay ưu đãi, lãi suất giảm thêm 3%</b></li>
-                <li><b>Đổi xe xăng sang xe điện Vinfast,</b> nhận <b>hỗ trợ thêm 5 triệu đồng</b></li>
-                <li><b>Tặng 6 triệu vào ví VinClub </b>khi<b> đăng ký biển tại Hà Nội</b></li>
-                <li><b>Thành viên VinClub</b> được <b>giảm thêm tới 1,5%</b> tùy hạng thẻ</li>
-            </ul>
+            <h1 id="carName" class="fw-bold mb-1" style="font-size: 2.2rem;"></h1>
+
+            <div class="d-flex align-items-baseline gap-2 mb-3">
+                <span id="carPrice" class="fw-bold text-danger" style="font-size: 2rem;"></span>
+                <span class="text-muted" style="font-size: 0.95rem;">(Giá niêm yết)</span>
+            </div>
+
+            <div class="border rounded-4 p-3 mb-3 bg-light">
+                <h5 class="fw-bold mb-3 text-uppercase text-primary">
+                🎁 Ưu đãi VinFast mới nhất
+                </h5>
+
+                <ul class="list-unstyled mb-0">
+                <li class="mb-2">✔ <b>Giảm ngay 4%</b> giá xe cho khách mua mới</li>
+                <li class="mb-2">✔ <b>Tặng 2 năm bảo hiểm thân vỏ</b> hoặc <b>6,5 triệu tiền mặt</b></li>
+                <li class="mb-2">✔ <b>Hỗ trợ vay ưu đãi</b>, lãi suất giảm thêm <b>3%</b></li>
+                <li class="mb-2">✔ <b>Đổi xe xăng sang xe điện</b>, hỗ trợ <b>5 triệu</b></li>
+                <li class="mb-2">✔ <b>Tặng 6 triệu vào ví VinClub</b> khi đăng ký biển Hà Nội</li>
+                <li>✔ <b>Thành viên VinClub</b> giảm thêm tới <b>1,5%</b></li>
+                </ul>
+            </div>
 
             <span style="color:red; font-weight:bold;">
                 Liên hệ ngay để được nhận tư vấn & nhận giá tốt nhất hôm nay!

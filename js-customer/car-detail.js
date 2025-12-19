@@ -36,6 +36,9 @@ export async function renderCarDetail(){
         document.getElementById('carName2').innerHTML = data.name;
         document.getElementById('carName3').innerHTML = data.name;
         document.getElementById('carName4').innerHTML = data.name;
+        document.getElementById('main-img').src = data.imageUrl;
+
+        localStorage.setItem('carImage', data.imageUrl);
 
         const sw = data.sizeWeight;
 
@@ -44,6 +47,8 @@ export async function renderCarDetail(){
 
         document.getElementById("size-wheelbase").innerText =
             sw.wheelBase.value;
+
+        localStorage.setItem('wheelBase', sw.wheelBase.value);
 
         document.getElementById("size-clearance").innerText =
             sw.groundClearance.value;
@@ -57,7 +62,7 @@ export async function renderCarDetail(){
         document.getElementById("size-trunk").innerText =
             sw.trunkVolume.value + " L";
 
-        const eo = car.engineOperate;
+        const eo = data.engineOperate;
 
         document.getElementById("engine-type").innerText =
             eo.engineType.value;
@@ -65,13 +70,15 @@ export async function renderCarDetail(){
         document.getElementById("engine-power").innerText =
             `${eo.maxPower.value} kW (~${Math.round(eo.maxPower.value * 1.34)} mã lực)`;
 
+        localStorage.setItem('maxPower', eo.maxPower.value);
+
         document.getElementById("engine-drive-mode").innerText =
             eo.driveMode.value;
 
         document.getElementById("engine-max-speed").innerText =
             eo.maxSpeed.value + " km/h";
 
-        const br = car.batteryRange;
+        const br = data.batteryRange;
 
         document.getElementById("battery-capacity").innerText =
             br.batteryCapacity.value + " kWh";
@@ -79,13 +86,15 @@ export async function renderCarDetail(){
         document.getElementById("battery-range").innerText =
             "~" + br.range.value + " km";
 
+        localStorage.setItem('batteryRange', br.range.value);
+
         document.getElementById("battery-normal-charge").innerText =
             "Khoảng " + br.normalChargeTime.value + " giờ";
 
         document.getElementById("battery-fast-charge").innerText =
             br.fastChargeSupport.value ? "Hỗ trợ" : "Không hỗ trợ";
 
-        const it = car.interiorFeature;
+        const it = data.interiorFeature;
 
         document.getElementById("interior-screen").innerText =
             it.centralScreen.value;
