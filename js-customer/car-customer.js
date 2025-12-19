@@ -27,7 +27,7 @@ export async function renderVehicles(){
                 <div class="col-md-3">
                     <div class="grid-card">
                         <img src="${v.imageUrl}" alt="${v.name}">
-                        <div class="mt-2 fw-semibold" onclick="openCarDetail(${v.id})">${v.name}</div>
+                        <div class="mt-2 fw-semibold" onclick="openCarDetail(${v.id})" style="cursor: pointer;">${v.name}</div>
                         <div class="price">${formatPrice(v.price)}</div>
                         <button class="btn btn-primary btn-buy"
                             onclick="openCarDetail(${v.id})">
