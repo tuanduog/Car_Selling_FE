@@ -149,6 +149,26 @@
             color: #fff;
             border-color: #0d6efd;
         }
+        .hover-underline:hover {
+            cursor: pointer;
+  text-decoration: underline;
+  border-bottom: 2px solid #0d6efd;
+}
+
+    .option-btn {
+  border: 1px solid #dee2e6;
+  background: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.option-btn.active {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}
+
 
     </style>
 </head>
@@ -229,7 +249,7 @@
     </p>
 
     <!-- ===== Ngoại thất ===== -->
-    <h5 class="mt-4">Ngoại thất</h5>
+    <h5 class="mt-4">Màu xe</h5>
 
     <p class="fw-semibold mb-2">Màu cơ bản <span class="text-muted fw-normal">– Theo xe</span></p>
     <div class="d-flex gap-3 mb-3">
@@ -248,10 +268,19 @@
     </div>
 
     <!-- ===== Nội thất ===== -->
-    <h5>Nội thất</h5>
-    <div class="d-flex gap-3 mb-4">
-        <div class="color-box active" style="background:#1f1f1f"></div>
+    <h5>Phiên bản</h5>
+        <div class="d-flex gap-3 mb-4">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="version" id="versionEco" value="Eco" checked>
+            <label class="form-check-label" for="versionEco">Eco</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="version" id="versionPlus" value="Plus">
+            <label class="form-check-label" for="versionPlus">Plus</label>
+        </div>
     </div>
+
 
     <hr>
 
@@ -261,8 +290,7 @@
             <h6 class="mb-1">Giá xe kèm pin</h6>
             <small class="text-muted">Đã bao gồm VAT</small>
         </div>
-        <div class="fw-bold fs-5 text-primary">
-            454.545.000 VNĐ
+        <div class="fw-bold fs-5 text-primary" id="carPrice">
         </div>
     </div>
 
@@ -279,36 +307,36 @@
 
     <div class="mb-3">
         <label class="form-label">Họ và tên</label>
-        <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+        <input type="text" class="form-control" placeholder="Nguyễn Văn A" id="fullName">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Số điện thoại</label>
-        <input type="text" class="form-control" placeholder="090xxxxxxx">
+        <input type="tel" class="form-control" placeholder="0xxx xxx xxx" id="phoneNumber">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" placeholder="example@email.com">
+        <input type="email" class="form-control" placeholder="example@gmail.com" id="email">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Căn cước công dân</label>
-        <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+        <input type="text" class="form-control" placeholder="012345678901" id="identityNumber">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Showroom nhận xe</label>
-        
+
         <select id="provinceSelect" class="form-select mb-3">
             <option value="">-- Chọn Tỉnh / Thành phố --</option>
         </select>
 
-        <!-- Showroom -->
         <select id="showroomSelect" class="form-select" disabled>
             <option value="">-- Chọn Showroom --</option>
         </select>
     </div>
+
 
     <button type="button" class="btn btn-primary w-100 py-2 fw-semibold" id="to-step-3">
         Tiếp theo
@@ -320,95 +348,107 @@
     <h5 class="mt-4">Phương thức thanh toán</h5>
 
     <div class="form-check mb-2">
-        <input class="form-check-input" type="radio" name="payment" checked>
+        <input class="form-check-input" type="radio" name="payment" value="full" checked>
         <label class="form-check-label">
             Thanh toán toàn bộ
         </label>
     </div>
 
     <div class="form-check mb-4">
-        <input class="form-check-input" type="radio" name="payment">
+        <input class="form-check-input" type="radio" name="payment" value="installment">
         <label class="form-check-label">
             Trả góp ngân hàng
         </label>
     </div>
 
-    <div>
-        <label class="form-label">Thông tin trả góp</label>
+    <div id="paymentInstallment" class="d-none">
+        <div>
+            <label class="form-label">Thông tin trả góp</label>
 
-        <div class="price-option active">
-            <div>
-                Giá xe niêm yết
+            <div class="price-option active">
+                <div>
+                    Giá xe niêm yết
+                </div>
+                <strong id="carPrice1"></strong>
             </div>
-            <strong>299.000.000 VNĐ</strong>
         </div>
-    </div>
 
-    <div class="mb-3">
+        <!-- LOAN TERM -->
+        <div class="mb-3">
         <label class="form-label">Thời gian vay (năm)</label>
-        <div class="row g-2 loan-group">
-            <div class="col"><button class="w-100">1</button></div>
-            <div class="col"><button class="w-100">2</button></div>
-            <div class="col"><button class="w-100">3</button></div>
-            <div class="col"><button class="w-100">4</button></div>
-            <div class="col"><button class="w-100">5</button></div>
-            <div class="col"><button class="w-100">6</button></div>
-            <div class="col"><button class="w-100">7</button></div>
-            <div class="col"><button class="w-100">8</button></div>
+        <div class="row g-2 loan-group option-group">
+            <div class="col"><button class="w-100 option-btn" data-value="1">1</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="2">2</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="3">3</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="4">4</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="5">5</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="6">6</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="7">7</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="8">8</button></div>
+        </div>
         </div>
 
-    </div>
-
-    <!-- DOWN PAYMENT -->
-    <div class="mb-3">
+        <!-- DOWN PAYMENT -->
+        <div class="mb-3">
         <label class="form-label">Số tiền trả trước</label>
-        <div class="row g-2 percent-group">
-            <div class="col"><button class="w-100">20%</button></div>
-            <div class="col"><button class="w-100">30%</button></div>
-            <div class="col"><button class="w-100">40%</button></div>
-            <div class="col"><button class="w-100">50%</button></div>
-            <div class="col"><button class="w-100">60%</button></div>
-            <div class="col"><button class="w-100">70%</button></div>
-            <div class="col"><button class="w-100">80%</button></div>
-            <div class="col"><button class="w-100">90%</button></div>
+        <div class="row g-2 percent-group option-group">
+            <div class="col"><button class="w-100 option-btn" data-value="20">20%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="30">30%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="40">40%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="50">50%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="60">60%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="70">70%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="80">80%</button></div>
+            <div class="col"><button class="w-100 option-btn" data-value="90">90%</button></div>
+        </div>
+        </div>
+
+        <!-- BANK -->
+        <div class="mb-3">
+            <label class="form-label">Ngân hàng</label>
+            <select class="form-select" id="bankSelect">
+                <option value="">-- Chọn ngân hàng --</option>
+            </select>
+        </div>
+
+        <div class="mb-2">
+        <div class="d-flex justify-content-between mb-2">
+            <div class="text-muted">Số tiền vay:</div>
+            <div id="loanAmount" class="fw-semibold"></div>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2">
+            <div class="text-muted">Số tiền lãi:</div>
+            <div id="interestAmount" class="fw-semibold"></div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div class="text-muted">Tổng tiền Vay & Lãi:</div>
+            <div id="totalAmount" class="fw-bold text-primary"></div>
+        </div>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2">
+            <div class="text-muted">Ước tính trả góp hàng tháng từ:</div>
+            <div id="estimateMonthlyPayment" class="fw-bold text-primary"></div>
+        </div>
+        
+        <div class="text-start mb-4">
+            <a class="hover-underline text-primary fw-semibold text-decoration-none">
+                Xem lịch trả góp chi tiết
+            </a>
         </div>
     </div>
 
-    <!-- BANK -->
-    <div class="mb-3">
-        <label class="form-label">Ngân hàng</label>
-        <select class="form-select">
-            <option>Chọn ngân hàng</option>
-            <option>VPBank</option>
-            <option>TPBank</option>
-            <option>Vietcombank</option>
-        </select>
-    </div>
 
-    <div class="price-box mb-2 d-flex justify-content-between align-items-center">
-        <div>
-            <h6 class="mb-1 fw-semibold">Ước tính trả góp hàng tháng</h6>
-        </div>
-        <div class="fw-bold fs-5 text-primary text-end">
-            5.200.000 VNĐ<br>
-            <small class="text-muted fs-6">/ tháng</small>
-        </div>
-    </div>
-
-<div class="text-start mb-3">
-    <a href="javascript:void(0)" class="text-primary fw-semibold text-decoration-none">
-        📊 Xem lịch trả góp chi tiết
-    </a>
-</div>
-
-
-    <div class="price-box mb-4">
-        <div>
-            <h6 class="mb-1">Tổng tiền</h6>
-            <small class="text-muted">Đã bao gồm VAT</small>
-        </div>
-        <div class="fw-bold fs-5 text-primary">
-            454.545.000 VNĐ
+    <div id="paymentFull">
+        <div class="price-box mb-4">
+            <div>
+                <h6 class="mb-1">Tổng tiền</h6>
+                <small class="text-muted">Đã bao gồm VAT</small>
+            </div>
+            <div class="fw-bold fs-5 text-primary" id="carPrice2">
+            </div>
         </div>
     </div>
 
@@ -421,4 +461,34 @@
     </div>
     </div>
 </main>
+
+<div class="modal fade" id="installmentModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Bảng dự toán chi phí trả góp từng tháng</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Kỳ thanh toán</th>
+              <th>Dư nợ đầu kỳ</th>
+              <th>Trả nợ gốc</th>
+              <th>Trả lãi</th>
+              <th>Tổng thanh toán</th>
+              <th>Dư nợ cuối kỳ</th>
+            </tr>
+          </thead>
+          <tbody id="installmentTableBody"></tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
 </body>

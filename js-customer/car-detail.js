@@ -39,6 +39,8 @@ export async function renderCarDetail(){
         document.getElementById('main-img').src = data.imageUrl;
 
         localStorage.setItem('carImage', data.imageUrl);
+        localStorage.setItem('carPrice', formatPrice(data.price));
+        localStorage.setItem('onlyPrice', data.price);
 
         const sw = data.sizeWeight;
 
