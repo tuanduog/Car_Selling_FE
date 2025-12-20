@@ -25,7 +25,6 @@ export async function calculateInstallment(loanYear, downPayment, price, bankInt
     try {
         const token = localStorage.getItem('jwt');
         const data = { loanYear, downPayment, price, bankInterest};
-        console.log(data);
 
         const response = await fetch(`${Base_Url}/api/bank-interest/calculate/v1`, {
             method: 'POST',
@@ -63,8 +62,9 @@ export async function renderDetail(){
     document.getElementById('carPrice').innerHTML = `${carPrice}`;
     document.getElementById('carPrice1').innerHTML = `${carPrice}`;
     document.getElementById('carPrice2').innerHTML = `${carPrice}`;
-    onlyCarPrice = localStorage.getItem('onlyPrice');
+    onlyCarPrice = Number(localStorage.getItem('onlyPrice'));
 
+    // chọn màu
     document.querySelectorAll('.color-box').forEach(box => {
         box.addEventListener('click', function () {
 
@@ -73,16 +73,27 @@ export async function renderDetail(){
 
             this.classList.add('active');
 
-            const color = this.style.background;
+            const selectedColor = this.dataset.color;
 
-            sessionStorage.setItem(
-            'selectedCarColor',
-            JSON.stringify({
-                color: color
-            })
-            );
+            sessionStorage.setItem('selectedColor', selectedColor);
         });
     });
+
+    sessionStorage.setItem('selectedVersion', 0);
+
+    // chọn phiên bản
+    document.querySelectorAll('input[name="version"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const version = radio.value;
+            sessionStorage.setItem('selectedVersion', version);
+        });
+    });
+
+    // check personal info
+    const fullName = document.getElementById('fullName');
+    const phonenumber = document.getElementById('phoneNumber');
+    const email = document.getElementById('email');
+    const identityNumber = document.getElementById('identityNumber');
 
     // Chọn showroom
     const showroomData = {
@@ -209,7 +220,6 @@ export async function renderDetail(){
         tryCalculateInstallment();
     });
 
-
 }
 let installmentDetails = null;
 
@@ -232,10 +242,44 @@ async function tryCalculateInstallment() {
     document.getElementById('totalAmount').innerHTML = formatPrice(data.totalPayment);
     document.getElementById('estimateMonthlyPayment').innerHTML = formatPrice(data.estimateMonthlyPayment);
     installmentDetails = data.installmentDetails;
+
+    const btn = document.getElementById('viewInstallment');
+    if (btn) {
+        btn.classList.remove('disabled');
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+        renderInstallmentTable();
+    }
 }
 
 function formatPrice(price) {
     return Number(price).toLocaleString("vi-VN") + " VNĐ";
+}
+
+function formatPriceNotVND(price) {
+    return Number(price).toLocaleString("vi-VN");
+}
+
+
+export function initInstallmentModal() {
+    const btn = document.getElementById('viewInstallment');
+    console.log('Installment btn:', btn);
+    if (!btn) return;
+
+    const modal = document.getElementById('installmentModal');
+
+    if (modal && !modal.dataset.loaded) {
+        modal.addEventListener('shown.bs.modal', () => {
+            if (!installmentDetails || installmentDetails.length === 0) {
+                alert('Vui lòng chọn đủ thông tin trả góp');
+                return;
+            }
+
+            renderInstallmentTable();
+        });
+
+        modal.dataset.loaded = 'true';
+    }
 }
 
 function renderInstallmentTable(){
@@ -245,11 +289,11 @@ function renderInstallmentTable(){
         return `
             <tr data-id="${detail.month}">
                 <td>${detail.month}</td>
-                <td>${detail.openingBalance}</td>
-                <td>${detail.principalPayment}</td>
-                <td>${detail.interestPayment}</td>
-                <td>${detail.totalPayment}</td>
-                <td>${detail.closingBalance}</td>
+                <td>${formatPriceNotVND(detail.openingBalance)}</td>
+                <td>${formatPriceNotVND(detail.principalPayment)}</td>
+                <td>${formatPriceNotVND(detail.interestPayment)}</td>
+                <td>${formatPriceNotVND(detail.totalPayment)}</td>
+                <td>${formatPriceNotVND(detail.closingBalance)}</td>
             </tr>
         `;
     }

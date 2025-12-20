@@ -253,23 +253,23 @@
 
     <p class="fw-semibold mb-2">Màu cơ bản <span class="text-muted fw-normal">– Theo xe</span></p>
     <div class="d-flex gap-3 mb-3">
-        <div class="color-box active" style="background:#ffffff"></div>
-        <div class="color-box" style="background:#c4161c"></div>
-        <div class="color-box" style="background:#0e0e0e"></div>
+        <div class="color-box active" style="background:#ffffff" data-color="Trắng"></div>
+        <div class="color-box" style="background:#c4161c" data-color="Đỏ"></div>
+        <div class="color-box" style="background:#0e0e0e" data-color="Đen"></div>
     </div>
 
     <p class="fw-semibold mb-2">
         Màu nâng cao <span class="text-primary fw-normal">Miễn phí</span>
     </p>
     <div class="d-flex gap-3 mb-4">
-        <div class="color-box" style="background:#f4c430"></div>
-        <div class="color-box" style="background:#2aa7c9"></div>
-        <div class="color-box" style="background:#5f6f52"></div>
+        <div class="color-box" style="background:#f4c430" data-color="Vàng"></div>
+        <div class="color-box" style="background:#2aa7c9" data-color="Xanh dương"></div>
+        <div class="color-box" style="background:#5f6f52" data-color="Xanh lá"></div>
     </div>
 
     <!-- ===== Nội thất ===== -->
     <h5>Phiên bản</h5>
-        <div class="d-flex gap-3 mb-4">
+    <div class="d-flex gap-3 mb-4">
         <div class="form-check">
             <input class="form-check-input" type="radio" name="version" id="versionEco" value="Eco" checked>
             <label class="form-check-label" for="versionEco">Eco</label>
@@ -280,7 +280,6 @@
             <label class="form-check-label" for="versionPlus">Plus</label>
         </div>
     </div>
-
 
     <hr>
 
@@ -306,27 +305,27 @@
     <h5 class="mt-4">Thông tin khách hàng</h5>
 
     <div class="mb-3">
-        <label class="form-label">Họ và tên</label>
+        <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
         <input type="text" class="form-control" placeholder="Nguyễn Văn A" id="fullName">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Số điện thoại</label>
+        <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
         <input type="tel" class="form-control" placeholder="0xxx xxx xxx" id="phoneNumber">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label">Email <span class="text-danger">*</span></label>
         <input type="email" class="form-control" placeholder="example@gmail.com" id="email">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Căn cước công dân</label>
+        <label class="form-label">Căn cước công dân <span class="text-danger">*</span></label>
         <input type="text" class="form-control" placeholder="012345678901" id="identityNumber">
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Showroom nhận xe</label>
+        <label class="form-label">Showroom nhận xe <span class="text-danger">*</span></label>
 
         <select id="provinceSelect" class="form-select mb-3">
             <option value="">-- Chọn Tỉnh / Thành phố --</option>
@@ -433,11 +432,18 @@
             <div id="estimateMonthlyPayment" class="fw-bold text-primary"></div>
         </div>
         
-        <div class="text-start mb-4">
-            <a class="hover-underline text-primary fw-semibold text-decoration-none">
-                Xem lịch trả góp chi tiết
+        <div class="mb-3">
+            <a href="#"
+            id="viewInstallment"
+            data-bs-toggle="modal"
+            data-bs-target="#installmentModal"
+            class="hover-underline text-primary text-decoration-none fw-semibold disabled"
+            style="pointer-events: none; opacity: 0.5;"
+            >
+            Xem lịch trả góp chi tiết
             </a>
         </div>
+
     </div>
 
 
