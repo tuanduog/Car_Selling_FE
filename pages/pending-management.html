@@ -27,12 +27,11 @@
 
                             <!-- Select trạng thái -->
                             <div class="col-auto">
-                            <span>Hình thức:</span>
-                            <select name="paymentStatus" id="paymentStatus">
+                            <span>Hình thức thanh toán:</span>
+                            <select name="paymentType" id="paymentType">
                                 <option value="all">Tất cả</option>
-                                <option value="inactive">Chưa hoàn thành</option>
-                                <option value="active">Đã hoàn thành</option>
-                                <option value="banned">Đã hủy</option>
+                                <option value="full">Thanh toán toàn bộ</option>
+                                <option value="installment">Thanh toán trả góp</option>
                             </select>
                             </div>
 
@@ -77,3 +76,24 @@
 
     <script type="text/javascript" src="script.js" defer></script>
 </main><!-- End #main -->
+
+<div class="modal fade" id="paymentDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chi tiết đơn hàng</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body" id="paymentDetailBody">
+        <div class="text-center">
+          <div class="spinner-border text-primary"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

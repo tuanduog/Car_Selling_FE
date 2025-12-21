@@ -21,7 +21,7 @@ document.getElementById('submitLogin').addEventListener('click', async function(
     console.log(response);
     const result = await response.json();
     if(result.statusCode === 200) {
-        alert(result.message);
+        showToast(result.message, "success");
         const data = result.data;
         localStorage.setItem('jwt', data.jwt);
         localStorage.setItem('email', data.email);
@@ -37,7 +37,23 @@ document.getElementById('submitLogin').addEventListener('click', async function(
             window.location.href = "staff.html";
         }
     } else {
-        alert('Đăng nhập thất bại: ' + result.message);
+        showToast(result.message, "error");
     }
 })
+
+function showToast(message, type = "success"){
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    
+    toast.className = "toast";
+    if(type === "success"){
+        toast.classList.add("show");
+    } else {
+        toast.classList.add("show", "error");
+    }
+
+    setTimeout(() => {
+        toast.className = "toast";
+    }, 2500);
+}
 

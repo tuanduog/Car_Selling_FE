@@ -106,11 +106,8 @@ function logout() {
 
     logoutBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('email');
-    localStorage.removeItem('role');
-    localStorage.removeItem('fullName');
-    localStorage.removeItem('currentPage');
+    localStorage.clear();
+    sessionStorage.clear();
 
     window.location.href = 'pages-login.html';
     });
