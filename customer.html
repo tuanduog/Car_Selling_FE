@@ -41,28 +41,62 @@
   <script type="text/javascript" src="customer.js" defer></script>
   <style>
     .toast {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 6px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all .4s ease;
-      z-index: 9999;
-    }
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-width: 250px;
+    max-width: 350px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    pointer-events: none;
+}
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
 
-    .toast.error {
-      background: #f44336;
-    }
+.toast.success { background: #4CAF50; }
+.toast.error { background: #f44336; }
+.toast.info { background: #2196F3; }
+.toast.warning { background: #FF9800; }
+
+.toast span { flex: 1; }
+
+.toast::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.toast.success::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" viewBox="0 0 24 24"><path d="M20.285 6.708l-11.39 11.39-5.18-5.18 1.414-1.414 3.766 3.766 9.976-9.976z"/></svg>');
+}
+
+.toast.error::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" viewBox="0 0 24 24"><path d="M18.364 5.636l-1.414-1.414L12 9.172 7.05 4.222 5.636 5.636 10.586 10.586 5.636 15.536l1.414 1.414L12 12.828l4.95 4.95 1.414-1.414-4.95-4.95 4.95-4.95z"/></svg>');
+}
+
+.toast.info::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>');
+}
+
     
     #pagination {
         display: flex;
@@ -180,7 +214,7 @@
 </head>
 
 <body>
-  <div id="toast" class="toast hidden"></div>
+  <div id="toast" class="toast"></div>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -266,11 +300,11 @@
 
         <li class="nav-item">Tiện ích</li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
           <span>So sánh xe</span>
         </a>
-      </li>
+      </li> -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages-customer/estimated-installment-costs.html')">
@@ -281,13 +315,13 @@
       <li class="nav-item">Mua sắm</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages-customer/product.html')">
           <span>Sản phẩm</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages/dashboard.html')">
+        <a class="nav-link collapsed" style="cursor: pointer;" onclick="loadPage('pages-customer/accessory.html')">
           <span>Phụ kiện xe</span>
         </a>
       </li>

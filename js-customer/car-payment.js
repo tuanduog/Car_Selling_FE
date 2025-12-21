@@ -49,6 +49,12 @@ let selectedLoanYear = null;
 let selectedDownPayment = null;
 let selectedBankInterest = null;
 
+let fullName = null;
+let phoneNumber = null;
+let email = null;
+let identityNumber = null;
+let showRoom = '';
+
 export async function renderDetail(){
     const carImage = localStorage.getItem('carImage');
     document.getElementById('carImage').src = carImage;
@@ -63,6 +69,8 @@ export async function renderDetail(){
     document.getElementById('carPrice1').innerHTML = `${carPrice}`;
     document.getElementById('carPrice2').innerHTML = `${carPrice}`;
     onlyCarPrice = Number(localStorage.getItem('onlyPrice'));
+
+    initStepConfig();
 
     // chọn màu
     document.querySelectorAll('.color-box').forEach(box => {
@@ -90,10 +98,10 @@ export async function renderDetail(){
     });
 
     // check personal info
-    const fullName = document.getElementById('fullName');
-    const phonenumber = document.getElementById('phoneNumber');
-    const email = document.getElementById('email');
-    const identityNumber = document.getElementById('identityNumber');
+    fullName = document.getElementById('fullName');
+    phoneNumber = document.getElementById('phoneNumber');
+    email = document.getElementById('email1');
+    identityNumber = document.getElementById('identityNumber');
 
     // Chọn showroom
     const showroomData = {
@@ -119,7 +127,7 @@ export async function renderDetail(){
         const provinceSelect = document.getElementById("provinceSelect");
         const showroomSelect = document.getElementById("showroomSelect");
 
-        // Đổ danh sách tỉnh
+        // fetch danh sách tỉnh
         Object.keys(showroomData).forEach(province => {
             const option = document.createElement("option");
             option.value = province;
@@ -142,6 +150,10 @@ export async function renderDetail(){
             option.textContent = showroom;
             showroomSelect.appendChild(option);
         });
+    });
+
+    showroomSelect.addEventListener("change", function () {
+        showRoom = this.value;
     });
 
     // Chọn loại payment
@@ -298,4 +310,108 @@ function renderInstallmentTable(){
         `;
     }
     ).join('');
+}
+
+function initStepConfig() {
+
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const stepItems = document.querySelectorAll('.step-item');
+
+    if (!step1 || !step2 || !step3) {
+        console.warn("Step DOM chưa sẵn sàng");
+        return;
+    }
+
+    let currentStep = 1;
+
+    function renderStep(step) {
+        stepItems.forEach(item => {
+            const circle = item.querySelector('.step-circle');
+            const label = item.querySelector('span.ms-2');
+
+            item.classList.add('text-muted');
+            circle.className = 'step-circle bg-light text-dark';
+            label.classList.remove('text-primary', 'fw-semibold');
+        });
+
+        const active = document.querySelector(`.step-item[data-step="${step}"]`);
+        active.classList.remove('text-muted');
+        active.querySelector('.step-circle').className = 'step-circle bg-primary text-white';
+        active.querySelector('span.ms-2').classList.add('text-primary', 'fw-semibold');
+
+        step1.classList.add('d-none');
+        step2.classList.add('d-none');
+        step3.classList.add('d-none');
+
+        document.getElementById(`step-${step}`).classList.remove('d-none');
+    }
+
+    function setActiveStep(step) {
+        if (step > currentStep) return;
+        currentStep = step;
+        renderStep(step);
+    }
+
+    function nextStep(step) {
+        if (step > 3) return;
+        currentStep = step;
+        renderStep(step);
+    }
+
+    // ===== Button next =====
+    document.getElementById('to-step-2')
+        ?.addEventListener('click', () => nextStep(2));
+
+    document.getElementById('to-step-3')
+        ?.addEventListener('click', () => {
+            const fullNameValue = fullName?.value?.trim() || '';
+            const phoneValue = phoneNumber?.value?.trim() || '';
+            const emailValue = email?.value?.trim() || '';
+            const identityValue = identityNumber?.value?.trim() || '';
+            const showRoomValue = showRoom || '';
+            if (!fullNameValue || !phoneValue || !emailValue || !identityValue || !showRoomValue) {
+            showToast("Vui lòng điền đầy đủ thông tin (*)", "warning");
+            return;
+        }
+
+        const phoneRegex = /^(0|\+84)[0-9]{9}$/;
+        if (!phoneRegex.test(phoneValue)) {
+            showToast("Số điện thoại không hợp lệ", "warning");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailValue)) {
+            showToast("Email không hợp lệ", "warning");
+            return;
+        }
+
+        const identityRegex = /^[0-9]{9}|[0-9]{12}$/;
+        if (!identityRegex.test(identityValue)) {
+            showToast("Căn cước/CMND không hợp lệ", "warning");
+            return;
+        }
+
+        // ----- Lưu session -----
+        sessionStorage.setItem('fullName', fullNameValue);
+        sessionStorage.setItem('phoneNumber', phoneValue);
+        sessionStorage.setItem('email', emailValue);
+        sessionStorage.setItem('identityNumber', identityValue);
+        sessionStorage.setItem('showRoom', showRoomValue);
+            
+            nextStep(3);
+        });
+
+    // ===== Click step header (chỉ cho lùi) =====
+    stepItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const step = Number(item.dataset.step);
+            setActiveStep(step);
+        });
+    });
+
+    // init
+    renderStep(1);
 }
