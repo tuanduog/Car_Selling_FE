@@ -143,6 +143,7 @@ export async function renderDetail(){
         showroomSelect.disabled = !province;
 
         if (!province) return;
+        sessionStorage.setItem('showRoomCity', province);
 
         showroomData[province].forEach(showroom => {
             const option = document.createElement("option");
@@ -162,21 +163,23 @@ export async function renderDetail(){
     const installmentSection = document.getElementById('paymentInstallment');
 
     function updatePaymentDisplay() {
-    const selected = document.querySelector('input[name="payment"]:checked');
+        const selected = document.querySelector('input[name="payment"]:checked');
+        
+        sessionStorage.setItem('paymentType', selected.value);
 
-    if (selected.value === 'full') {
-        fullSection.classList.remove('d-none');
-        fullSection.classList.add('d-block');
+        if (selected.value === '1') {
+            fullSection.classList.remove('d-none');
+            fullSection.classList.add('d-block');
 
-        installmentSection.classList.remove('d-flex', 'd-block');
-        installmentSection.classList.add('d-none');
-    } else {
-        fullSection.classList.remove('d-block');
-        fullSection.classList.add('d-none');
+            installmentSection.classList.remove('d-flex', 'd-block');
+            installmentSection.classList.add('d-none');
+        } else {
+            fullSection.classList.remove('d-block');
+            fullSection.classList.add('d-none');
 
-        installmentSection.classList.remove('d-none');
-        installmentSection.classList.add('d-block'); // hoặc 'd-flex' nếu layout flex
-    }
+            installmentSection.classList.remove('d-none');
+            installmentSection.classList.add('d-block'); // hoặc 'd-flex' nếu layout flex
+        }
     }
 
     paymentRadios.forEach(radio => {
@@ -186,7 +189,6 @@ export async function renderDetail(){
     updatePaymentDisplay();
 
     // Chọn thời hạn và số tiền trả trước
-
     function setupOptionGroup(groupSelector, callback) {
     const group = document.querySelector(groupSelector);
     const buttons = group.querySelectorAll('.option-btn');
@@ -207,11 +209,13 @@ export async function renderDetail(){
 
     setupOptionGroup('.loan-group', value => {
         selectedLoanYear = Number(value);
-       tryCalculateInstallment();
+        sessionStorage.setItem('loanDuration', selectedLoanYear);
+        tryCalculateInstallment();
     });
 
     setupOptionGroup('.percent-group', value => {
         selectedDownPayment = Number(value) / 100;
+        sessionStorage.setItem('downPayment', selectedDownPayment);
         tryCalculateInstallment();
     });
 
@@ -222,15 +226,20 @@ export async function renderDetail(){
 
     response.data.forEach(bank => {
         const option = document.createElement("option");
-        option.value = Number(bank.interestRate);
+        option.value = bank.id;
+        option.dataset.interest = bank.interestRate;
         option.textContent = `${bank.bank} - ${(bank.interestRate * 100).toFixed(1)} %/năm`;
         bankSelect.appendChild(option);
     });
 
     bankSelect.addEventListener('change', () => {
-        selectedBankInterest = Number(bankSelect.value);
+        const selectedOption = bankSelect.options[bankSelect.selectedIndex];
+        const bankId = selectedOption.value;
+        selectedBankInterest = Number(selectedOption.dataset.interest);
+        sessionStorage.setItem('bankId', bankId);
         tryCalculateInstallment();
     });
+
 
 }
 let installmentDetails = null;
@@ -399,7 +408,7 @@ function initStepConfig() {
         sessionStorage.setItem('phoneNumber', phoneValue);
         sessionStorage.setItem('email', emailValue);
         sessionStorage.setItem('identityNumber', identityValue);
-        sessionStorage.setItem('showRoom', showRoomValue);
+        sessionStorage.setItem('showRoomName', showRoomValue);
             
             nextStep(3);
         });

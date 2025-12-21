@@ -22,8 +22,10 @@ window.loadPage = async function(url) {
 
     if(url.includes("deposit")){
         const module = await import('./js-customer/car-payment.js');
+        const module2 = await import('./js-customer/accept-payment.js');
         setTimeout(() => {
             module.renderDetail();
+            module2.acceptPayment();
         }, 0);
     }
    

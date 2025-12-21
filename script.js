@@ -34,6 +34,20 @@ window.loadPage = async function(url) {
         }, 0);
     }
 
+    if(url.includes("payment-management")){
+        const module = await import('./js/payment.js');
+        setTimeout(() => {
+            module.loadPaymentManagement();
+        }, 0);
+    }
+
+    if(url.includes("pending-management")){
+        const module = await import('./js/pending-payment.js');
+        setTimeout(() => {
+            module.loadPendingPaymentManagement();
+        }, 0);
+    }
+
     if(url.includes("add-leader")){
         const module = await import('./js/add-leader.js');
         requestAnimationFrame(() => {

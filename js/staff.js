@@ -117,7 +117,7 @@ function renderTable(staffs){
                 </span>
             </td>
             <td class="text-center d-flex gap-2 justify-content-center">
-                <button class="btn btn-outline-primary btn-sm me-2 edit-btn" title="Chỉnh sửa">
+                <button class="btn btn-outline-primary btn-sm me-1 edit-btn" title="Chỉnh sửa">
                     <i class="bi bi-pencil-square"></i>
                 </button>
                 <button class="btn btn-outline-danger btn-sm delete-btn" title="Xóa">
