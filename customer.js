@@ -28,6 +28,13 @@ window.loadPage = async function(url) {
             module2.acceptPayment();
         }, 0);
     }
+
+    if(url.includes("order")){
+        const module = await import('./js-customer/order.js');
+        setTimeout(() => {
+            module.loadOrder();
+        }, 0);
+    }
    
     fillUserInfo();
 
