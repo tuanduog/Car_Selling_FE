@@ -30,7 +30,7 @@ export async function renderVehicles(){
                         <div class="mt-2 fw-semibold" onclick="openCarDetail(${v.id})" style="cursor: pointer;">${v.name}</div>
                         <div class="price">${formatPrice(v.price)}</div>
                         <button class="btn btn-primary btn-buy"
-                            onclick="openCarDetail(${v.id})">
+                            onclick="openCarPayment(${v.id})">
                             Mua ngay
                         </button>
                     </div>
@@ -45,6 +45,11 @@ export async function renderVehicles(){
 window.openCarDetail = function (id){
     localStorage.setItem('carId', id);
     loadPage('pages-customer/car-detail.html');
+}
+
+window.openCarPayment = function (id){
+    localStorage.setItem('carId', id);
+    loadPage('pages-customer/deposit.html');
 }
 
 function formatPrice(price) {

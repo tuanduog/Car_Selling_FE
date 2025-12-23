@@ -139,7 +139,7 @@ function viewDetail(id) {
                         <div class="col-6">${p.loanDuration} tháng</div>
 
                         <div class="col-6"><b>Số tiền trả trước:</b></div>
-                        <div class="col-6">${formatMoney(p.downPayment)}</div>
+                        <div class="col-6">${formatMoney(Math.round(p.downPayment * p.price))}</div>
 
                         <div class="col-6"><b>Ngân hàng:</b></div>
                         <div class="col-6">${p.bankName}</div>

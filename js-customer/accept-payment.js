@@ -11,12 +11,12 @@ export async function addPayment(data){
         });
         const result = await response.json();
         if(result.statusCode === 200){
-            localStorage.setItem("toastMessage", "Thêm thành công");
+            localStorage.setItem("toastMessage", "Tạo đơn hàng thành công");
             localStorage.setItem("toastType", "success");
             localStorage.setItem("redirectPage", "pages-customer/product.html");
             window.location.href = "customer.html";
         } else {
-            showToast("Thêm thất bại", "error");
+            showToast("Tạo thất bại", "error");
             return;
         }
     } catch(error){
